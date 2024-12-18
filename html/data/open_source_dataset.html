@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Open Source Datasets &#8212; trajdl 0.1.0.dev1 documentation</title>
+    <title>Open Source Datasets &#8212; TrajDL 0.1.0.dev1 documentation</title>
   
   
   
@@ -131,7 +131,7 @@
   
   
   
-    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+    <p class="title logo__title">TrajDL 0.1.0.dev1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -700,7 +700,7 @@ load dataset: porto
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;4244&quot;</td><td>&quot;20100705&quot;</td><td>[&quot;600805&quot;]</td></tr><tr><td>&quot;81002&quot;</td><td>&quot;20100326&quot;</td><td>[&quot;726569&quot;]</td></tr><tr><td>&quot;96670&quot;</td><td>&quot;20100918&quot;</td><td>[&quot;3939397&quot;, &quot;3940505&quot;, … &quot;3941425&quot;]</td></tr><tr><td>&quot;29458&quot;</td><td>&quot;20100718&quot;</td><td>[&quot;1097039&quot;]</td></tr><tr><td>&quot;12942&quot;</td><td>&quot;20100822&quot;</td><td>[&quot;619171&quot;, &quot;263028&quot;, … &quot;446723&quot;]</td></tr></tbody></table></div></div></div>
+<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;9303&quot;</td><td>&quot;20100130&quot;</td><td>[&quot;99031&quot;, &quot;267335&quot;]</td></tr><tr><td>&quot;29396&quot;</td><td>&quot;20100629&quot;</td><td>[&quot;971553&quot;]</td></tr><tr><td>&quot;51564&quot;</td><td>&quot;20100319&quot;</td><td>[&quot;639462&quot;]</td></tr><tr><td>&quot;153197&quot;</td><td>&quot;20101009&quot;</td><td>[&quot;142502&quot;]</td></tr><tr><td>&quot;1191&quot;</td><td>&quot;20101009&quot;</td><td>[&quot;799435&quot;, &quot;233072&quot;, … &quot;18835&quot;]</td></tr></tbody></table></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -717,16 +717,16 @@ load dataset: porto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=1, entity_id=&#39;4244&#39;, loc_seq=&#39;600805&#39;),
- LocSeq(size=1, entity_id=&#39;81002&#39;, loc_seq=&#39;726569&#39;),
- LocSeq(size=5, entity_id=&#39;96670&#39;, loc_seq=&#39;3939397&#39;, &#39;3940505&#39;, &#39;3940737&#39;, ...),
- LocSeq(size=1, entity_id=&#39;29458&#39;, loc_seq=&#39;1097039&#39;),
- LocSeq(size=13, entity_id=&#39;12942&#39;, loc_seq=&#39;619171&#39;, &#39;263028&#39;, &#39;869898&#39;, ...),
- LocSeq(size=6, entity_id=&#39;106865&#39;, loc_seq=&#39;1249681&#39;, &#39;1253032&#39;, &#39;1254398&#39;, ...),
- LocSeq(size=1, entity_id=&#39;118372&#39;, loc_seq=&#39;389370&#39;),
- LocSeq(size=1, entity_id=&#39;73039&#39;, loc_seq=&#39;33777&#39;),
- LocSeq(size=2, entity_id=&#39;82376&#39;, loc_seq=&#39;719596&#39;, &#39;733790&#39;),
- LocSeq(size=1, entity_id=&#39;120398&#39;, loc_seq=&#39;954080&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=2, entity_id=&#39;9303&#39;, loc_seq=&#39;99031&#39;, &#39;267335&#39;),
+ LocSeq(size=1, entity_id=&#39;29396&#39;, loc_seq=&#39;971553&#39;),
+ LocSeq(size=1, entity_id=&#39;51564&#39;, loc_seq=&#39;639462&#39;),
+ LocSeq(size=1, entity_id=&#39;153197&#39;, loc_seq=&#39;142502&#39;),
+ LocSeq(size=4, entity_id=&#39;1191&#39;, loc_seq=&#39;799435&#39;, &#39;233072&#39;, &#39;1376531&#39;, ...),
+ LocSeq(size=1, entity_id=&#39;102750&#39;, loc_seq=&#39;110114&#39;),
+ LocSeq(size=1, entity_id=&#39;25500&#39;, loc_seq=&#39;884602&#39;),
+ LocSeq(size=1, entity_id=&#39;39782&#39;, loc_seq=&#39;1057513&#39;),
+ LocSeq(size=2, entity_id=&#39;36624&#39;, loc_seq=&#39;3100096&#39;, &#39;219544&#39;),
+ LocSeq(size=1, entity_id=&#39;77973&#39;, loc_seq=&#39;664198&#39;)]
 </pre></div>
 </div>
 </div>
@@ -773,22 +773,23 @@ start_ts: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7fb22555be80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7f549414fd60&gt;
 [
   [
     [
-      &quot;600805&quot;
+      &quot;99031&quot;,
+      &quot;267335&quot;
     ],
     [
-      &quot;726569&quot;
+      &quot;971553&quot;
     ],
     ...
     [
-      &quot;719596&quot;,
-      &quot;733790&quot;
+      &quot;3100096&quot;,
+      &quot;219544&quot;
     ],
     [
-      &quot;954080&quot;
+      &quot;664198&quot;
     ]
   ]
 ]
