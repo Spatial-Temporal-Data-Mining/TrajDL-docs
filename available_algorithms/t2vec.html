@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>T2VEC &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'available_algorithms/t2vec';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GM-VSAE" href="gmvsae.html" />
+    <link rel="prev" title="TULER" href="tuler.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data/index.html">Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data/sequence_and_dataset.html">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data/open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../training/index.html">Training</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/collate_function.html">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Algorithms</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tuler.html">TULER</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gmvsae.html">GM-VSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlstm.html">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/available_algorithms/t2vec.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>T2VEC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">T2VEC算法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">方法建模</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">优化函数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">正负样本标签采样</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">代码示例</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="t2vec">
+<h1>T2VEC<a class="headerlink" href="#t2vec" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://kaiqizhao.github.io/icde18-camera-ready.pdf">[ICDE2018]Deep representation learning for trajectory similarity computation</a></p>
+<section id="id1">
+<h2>1.&nbsp;&nbsp;摘要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>计算<em>轨迹相似度</em>（trajectory similarity）是轨迹序列领域中的一项重要任务。传统算法一般是基于<em>动态规划</em>（dynamic programming）算法，这些方法存在如下三个主要的缺点：</p>
+<ol class="arabic simple">
+<li><p>时间复杂度<span class="math notranslate nohighlight">\(O(n^2)\)</span></p></li>
+<li><p>针对<em>非均匀</em>（non-uniformity）、<em>低采样率</em>（low sampling rate）以及<em>带噪声</em>（noisy）的轨迹序列效果不佳</p></li>
+</ol>
+<p>因此，作者提出了基于seq2seq模型的深度学习方法<strong>T2VEC</strong>（<strong>t</strong>rajectory <strong>to</strong> <strong>v</strong>ector），旨在学习高质量的<em>轨迹嵌入表示</em>（trajectory embedding）以应对上述难点。该篇论文有如下贡献：</p>
+<ol class="arabic simple">
+<li><p>在没有样本标签的情况下，通过序列样本增强的方式来构建学习样本。</p></li>
+<li><p>基于空间近邻的先验，对<em>噪声对比估计损失</em>（noise contrastive estimation）的正标签采样进行改进，提出了<em>空间近邻感知损失</em>（spatial proximity aware loss）</p></li>
+</ol>
+<p>通过以上的方式，T2VEC能够更好的表征轨迹序列中位置距离相关的信息。</p>
+</section>
+<section id="id2">
+<h2>2.&nbsp;&nbsp;预备知识<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>seq2seq模型的结构如<a class="reference internal" href="#seq2seq-arch">图1</a>，输入是token序列 <span class="math notranslate nohighlight">\(\mathrm{x}\)</span>，输出是token序列 <span class="math notranslate nohighlight">\(\mathrm{y}\)</span>:</p>
+<figure class="align-center" id="seq2seq-arch">
+<a class="reference internal image-reference" href="../_images/t2vec_seq2seq_model.jpg"><img alt="seq2seq模型结构" src="../_images/t2vec_seq2seq_model.jpg" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图1. seq2seq模型结构（图源：<a class="reference external" href="https://kaiqizhao.github.io/icde18-camera-ready.pdf">T2VEC</a>）</span><a class="headerlink" href="#seq2seq-arch" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>根据seq2seq模型的链式法则，可得到如下公式:</p>
+<div class="math notranslate nohighlight" id="equation-chain-rule-1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-chain-rule-1" title="Link to this equation">#</a></span>\[
+\mathbb{P}(y_1,...,y_{|y|} \vert x_1,...,x_{|x|}) = \mathbb{P}(y_1 \vert x) \prod_{t=2}^{|y|} \mathbb{P}(y_t \vert y_{1:t-1},x)
+\]</div>
+<p>输入的轨迹序列<span class="math notranslate nohighlight">\(\mathrm{x}\)</span>经过<em>编码器</em>（encoder）输出为固定维度（如<span class="math notranslate nohighlight">\(d=512\)</span>）的向量表示<span class="math notranslate nohighlight">\(v\)</span>，在RNN系列的模型中即为编码器最后一个<em>单元</em>（unit）输出隐藏状态（hidden state），所以<a class="reference internal" href="#equation-chain-rule-1">(1)</a> 可以简化成如下:</p>
+<div class="math notranslate nohighlight" id="equation-chain-rule-2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-chain-rule-2" title="Link to this equation">#</a></span>\[
+  \mathbb{P}(y_t \vert y_{1:t-1}, x) = \mathbb{P}(y_t \vert y_{1:t-1}, v)
+\]</div>
+<p><em>解码器</em>（decoder）在每一个时间<span class="math notranslate nohighlight">\(t\)</span>上都会将<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(y_{1:t-1}\)</span>解码成隐状态<span class="math notranslate nohighlight">\(h_{t}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-decoding">
+<span class="eqno">(3)<a class="headerlink" href="#equation-decoding" title="Link to this equation">#</a></span>\[\begin{split}
+  h_t = f_{dec}(v, y_{1:t-1}) = \begin{cases} f_{dec}(v, EOS) &amp; t=1 \\ f_{dec}(h_{t-1}, y_{t-1}) &amp;  t &gt;= 2, \end{cases}
+\end{split}\]</div>
+<p>所以，<span class="math notranslate nohighlight">\(\mathbb{P}(y_t \vert y_{1:t-1}, v)\)</span>可以被建模成:</p>
+<div class="math notranslate nohighlight" id="equation-post-prob">
+<span class="eqno">(4)<a class="headerlink" href="#equation-post-prob" title="Link to this equation">#</a></span>\[
+  \mathbb{P}(y_t=u \vert y_{1:t-1}, v) = \mathbb{P}(y_t=u|h_t)=\frac{\exp(W_u^Th_t)}{\sum_{v \in V}\exp(W_v^Th_t)}
+\]</div>
+<p><span class="math notranslate nohighlight">\(W^T\)</span>是从<em>隐状态空间</em>（hidden state space）映射到<em>词表</em>（vocabulary）的映射矩阵，<span class="math notranslate nohighlight">\(u\)</span>表示词表中的一个候选元素，<span class="math notranslate nohighlight">\(W_u^T\)</span>定义为该映射矩阵的第<span class="math notranslate nohighlight">\(u\)</span>行，<span class="math notranslate nohighlight">\(V\)</span>表示字典空间的大小。</p>
+<p>综合上述公式<a class="reference internal" href="#equation-chain-rule-1">(1)</a><a class="reference internal" href="#equation-chain-rule-2">(2)</a><a class="reference internal" href="#equation-decoding">(3)</a><a class="reference internal" href="#equation-post-prob">(4)</a>，显然，从输入<span class="math notranslate nohighlight">\(\mathrm{x}\)</span>经过seq2seq模型获得输出<span class="math notranslate nohighlight">\(\mathrm{y}\)</span>，在有监督学习的范式下，模型训练可以使用交叉熵损失。</p>
+</section>
+<section id="id3">
+<h2>3.&nbsp;&nbsp;T2VEC算法<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>3.1.&nbsp;&nbsp;定义<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>在进行方法建模之前，先来做如下定义：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span>：<em>轨迹序列</em>（trajectory sequence），真实世界中采集到的离散轨迹点序列。</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span>：<em>隐藏路径</em>（underlying route），<em>隐藏状态空间</em>（hidden state space）中的连续分布，从该分布中采样可以得到一条真实世界中的离散轨迹序列。该分布无直接的解析解（即我们无法写出该分布的数学公式），我们仅能够观测到该分布在真实世界中的采样——轨迹序列的集合。</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_\theta(T|R)\)</span>：先验分布，直接对该分布采样即可获得隐藏路径<span class="math notranslate nohighlight">\(R\)</span>的一条轨迹序列样本<span class="math notranslate nohighlight">\(T\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_\phi(R|T)\)</span>：后验分布，该分布基于轨迹序列样本<span class="math notranslate nohighlight">\(T\)</span>来推理该样本在隐藏状态空间中的分布<span class="math notranslate nohighlight">\(R\)</span>，该分布也没有解析解。</p></li>
+</ul>
+<figure class="align-center" id="latent-model">
+<a class="reference internal image-reference" href="../_images/latent_space.svg"><img alt="隐藏路径建模" src="../_images/latent_space.svg" style="width: 300px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图2. 隐藏状态空间建模</span><a class="headerlink" href="#latent-model" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>此类建模方式已经是深度学习较为常用的建模方法，如果需要更进一步的了解，可以参见<a class="reference external" href="https://arxiv.org/pdf/1312.6114">Auto-Encoding Variational Bayes</a>。</p>
+</div>
+<p>在上面的定义中，认为<span class="math notranslate nohighlight">\(R\)</span>是<span class="math notranslate nohighlight">\(T\)</span>在连续的向量空间中的压缩表示，如果能够有一个模型能够对这个隐藏状态分布有较好的建模，那么<span class="math notranslate nohighlight">\(R\)</span>就是<span class="math notranslate nohighlight">\(T\)</span>较好的<em>向量表征</em>（vector representation）。假如这个模型已经得到了，那么输出轨迹<span class="math notranslate nohighlight">\(T\)</span>就可以拿到<span class="math notranslate nohighlight">\(T\)</span>对应的向量表示<span class="math notranslate nohighlight">\(R\)</span>。</p>
+<p>对于此类轨迹序列相关的表征问题，很容易想到使用RNN系列的模型，但此处的关键是如何进行模型的训练。</p>
+</section>
+<section id="id5">
+<h3>3.2.&nbsp;&nbsp;方法建模<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>T2VEC算法的目标是给定轨迹<span class="math notranslate nohighlight">\(T\)</span>，能够通过模型生成其在隐藏状态空间中的向量表示，即隐藏路径<span class="math notranslate nohighlight">\(R\)</span>，用如下公式来进行描述：</p>
+<div class="math notranslate nohighlight" id="equation-max-post-prob">
+<span class="eqno">(5)<a class="headerlink" href="#equation-max-post-prob" title="Link to this equation">#</a></span>\[
+\mathcal{L} = \max\mathbb{P}(R|T)
+\]</div>
+<p>在上文的定义中已经提及，<span class="math notranslate nohighlight">\(T\)</span>是真实世界中的轨迹序列点而<span class="math notranslate nohighlight">\(R\)</span>是建模过程中假设出来的隐藏状态变量，并不是真实能够观测到的，也很难直接获得<span class="math notranslate nohighlight">\(R\)</span>分布的解析解。换言之，我们无法通过一个参数已知的数学公式或模型直接计算出给定<span class="math notranslate nohighlight">\(T\)</span>条件下的<span class="math notranslate nohighlight">\(R\)</span>的值。</p>
+<p>所以在T2VEC中又作如下建模：假设某路径<span class="math notranslate nohighlight">\(R\)</span>有两条能够观测到的轨迹序列分别是<span class="math notranslate nohighlight">\(T_a\)</span>和<span class="math notranslate nohighlight">\(T_b\)</span>（<span class="math notranslate nohighlight">\(R\)</span>是连续空间中的分布，可以有很多采样的轨迹序列样本）。这两条轨迹序列都是非均匀的（因为真实的轨迹序列是非均匀的），但是<span class="math notranslate nohighlight">\(T_a\)</span>以低采样率采样而<span class="math notranslate nohighlight">\(T_b\)</span>是以高采样率采样。因此，我们认为相比于<span class="math notranslate nohighlight">\(T_a\)</span>，<span class="math notranslate nohighlight">\(T_b\)</span>更接近<span class="math notranslate nohighlight">\(R\)</span>，所以可得如下关系:</p>
+<div class="math notranslate nohighlight" id="equation-sim-by-sampling">
+<span class="eqno">(6)<a class="headerlink" href="#equation-sim-by-sampling" title="Link to this equation">#</a></span>\[
+  \max \mathbb{P}(R|T_a) \approx \max \mathbb{P}(T_b|T_a)
+\]</div>
+<p>注意，因为<span class="math notranslate nohighlight">\(R\)</span>是隐藏变量，分布无从得知，所以也无法直接从<span class="math notranslate nohighlight">\(R\)</span>采样获得到<span class="math notranslate nohighlight">\((T_a, T_b)\)</span>这样的观测样本组合，我们也没有“标签”来得知两条序列是否由同一个分布产生的。所以在这里，作者使用了如下的巧妙方式来构建了样本组合<span class="math notranslate nohighlight">\((T_a, T_b)\)</span>:</p>
+<ul class="simple">
+<li><p>在真实数据集中随机采样一条轨迹序列<span class="math notranslate nohighlight">\(T_{original}\)</span>，然后以采样率<span class="math notranslate nohighlight">\(r_a\)</span>从<span class="math notranslate nohighlight">\(T_{original}\)</span>随机采样一条序列<span class="math notranslate nohighlight">\(T_a\)</span>，以采样率<span class="math notranslate nohighlight">\(r_b\)</span>从<span class="math notranslate nohighlight">\(T_{original}\)</span>随机采样一条序列<span class="math notranslate nohighlight">\(T_b\)</span>，其中<span class="math notranslate nohighlight">\(r_b &gt; r_a\)</span>，此时，就获得了一对来源于同一个路径<span class="math notranslate nohighlight">\(R\)</span>的观测样本组合<span class="math notranslate nohighlight">\((T_a, T_b)\)</span>（基于上文假设的条件下）。</p></li>
+</ul>
+<p>通过这种方式，就解决了计算<span class="math notranslate nohighlight">\(\max\mathbb{P}(R|T)\)</span>时的标签问题。在seq2seq<em>编码器-解码器</em>（encoder-decoder）架构中, 输入是<span class="math notranslate nohighlight">\(T_a\)</span>，标签是<span class="math notranslate nohighlight">\(T_b\)</span>，使用编码器将<span class="math notranslate nohighlight">\(T_a\)</span>编码成高维的向量表示<span class="math notranslate nohighlight">\(v\)</span>，此时<span class="math notranslate nohighlight">\(v\)</span>即为上文方法建模中的隐藏路径<span class="math notranslate nohighlight">\(R\)</span>的向量表示，再通过解码器逐步解码生成<span class="math notranslate nohighlight">\(\tilde{T}_b\)</span>。</p>
+<p>模型训练之后，如果<span class="math notranslate nohighlight">\(\tilde{T}_b\)</span>和<span class="math notranslate nohighlight">\(T_b\)</span>足够接近（比如在最小均方误差或交叉熵损失的衡量指标下），那么说明模型很好的捕获了轨迹序列<span class="math notranslate nohighlight">\(T\)</span>的向量特征<span class="math notranslate nohighlight">\(v\)</span>。</p>
+<p>更近一步的，为了使得模型学习到的特征对数据中的噪声更加的鲁棒，在构建样本的时候针对样本进行了不同程度上的<em>扭曲</em>(distortion，在这里表现为添加噪声)，如下:</p>
+<ul>
+<li><p>对于序列 <span class="math notranslate nohighlight">\(T_a\)</span> ，随机采样其中的一个轨迹点 <span class="math notranslate nohighlight">\(P(p_x, p_y)\)</span> ，对其添加高斯扰动:</p>
+<div class="math notranslate nohighlight" id="equation-distortion-1">
+<span class="eqno">(7)<a class="headerlink" href="#equation-distortion-1" title="Link to this equation">#</a></span>\[
+  p\prime_x=p_x + 30·d_x
+  \]</div>
+<div class="math notranslate nohighlight" id="equation-distortion-1">
+<span class="eqno">(8)<a class="headerlink" href="#equation-distortion-1" title="Link to this equation">#</a></span>\[
+  p\prime_y = p_y + 30·d_y
+  \]</div>
+</li>
+</ul>
+<p>其中，<span class="math notranslate nohighlight">\(d_x \sim Gaussian(0,1), d_y \sim Gaussian(0,1)\)</span>。通过此种样本的构建方式，结合模型的训练，能够很好的应对之前所提到的三个问题: <strong>非均匀分布</strong>、 <strong>低采样率</strong>、 <strong>带噪声</strong>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在没有标签的情况下，通过对原样本的增强（采样、扭曲、掩码等）操作，生成新的样本并与原样本构成一对样本来训练模型，是如今无监督对比学习的常用样本构建方式，比如计算机视觉领域的<a class="reference external" href="https://arxiv.org/pdf/2111.06377">MAE(2021)</a>、自然语言处理领域的<a class="reference external" href="https://arxiv.org/pdf/1810.04805">BERT(2019)</a>。</p>
+</div>
+</section>
+<section id="id6">
+<h3>3.3.&nbsp;&nbsp;优化函数<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>在<a class="reference internal" href="#equation-post-prob">(4)</a>中，不难看出，解码器的输出头实际上是一个分类模型，将综合了历史轨迹序列特征和编码器特征的隐藏变量<span class="math notranslate nohighlight">\(h_t\)</span>经过一个线性层（<span class="math notranslate nohighlight">\(W\)</span>）和<span class="math notranslate nohighlight">\(\mathrm{softmax}\)</span>层之后输出词表中每一个位置元素的预测概率。</p>
+<p>对于此分类问题的损失函数，在基于seq2seq的自然语言处理任务中一般使用<em>负对数似然损失</em>（negative log-likelihood loss）：</p>
+<div class="math notranslate nohighlight" id="equation-nll-loss">
+<span class="eqno">(9)<a class="headerlink" href="#equation-nll-loss" title="Link to this equation">#</a></span>\[
+  \mathcal{L_1}=-\log \prod_{t}\mathbb{P}(y_t \vert y_{1:t-1}, x)
+\]</div>
+<p>该损失如果直接用于轨迹序列的任务，则会存在如下缺点: 假设在时间点<span class="math notranslate nohighlight">\(t\)</span>上的标签是<span class="math notranslate nohighlight">\(y_t\)</span> ，此外还有另外两个候选结果，<span class="math notranslate nohighlight">\(y_1\)</span>和<span class="math notranslate nohighlight">\(y_2\)</span>，并且<span class="math notranslate nohighlight">\(\mathrm{distance}(y_t, y_1)&gt;\mathrm{distance}(y_t, y_2)\)</span>，此时损失函数对于两者的惩罚是相同权重的，这是不合理的，应该对于距离标签<span class="math notranslate nohighlight">\(y_t\)</span>更远的候选标签<span class="math notranslate nohighlight">\(y_1\)</span>施加更多的惩罚，在<a class="reference internal" href="#equation-nll-loss">(9)</a>中没有体现这种空间近邻关系，而这种空间近邻的先验知识是可以引入到损失函数中的。</p>
+<p>因此，T2VEC中提出了基于空间距离加权的损失函数，即<em>空间近邻感知损失</em>（spatial proximity aware loss），如下:</p>
+<div class="math notranslate nohighlight" id="equation-spa-loss">
+<span class="eqno">(10)<a class="headerlink" href="#equation-spa-loss" title="Link to this equation">#</a></span>\[
+  \mathcal{L_2}=-\sum_{t=1}^{|y|}\sum_{u \in V}w_{uy_t} \log \frac{\exp(W_u^Th_t)}{\sum_{v \in V}\exp(W_v^Th_t)}
+\]</div>
+<p>其中:</p>
+<div class="math notranslate nohighlight" id="equation-spa-weight">
+<span class="eqno">(11)<a class="headerlink" href="#equation-spa-weight" title="Link to this equation">#</a></span>\[
+  w_{uy_t}=\frac{\exp(-||u-y_t||_2/\theta)}{\sum_{v \in V}\exp(-||v - y_t||_2/\theta)}
+\]</div>
+<p>可以看出，其中<span class="math notranslate nohighlight">\(u\)</span>为词表中的候选标签，<span class="math notranslate nohighlight">\(y_t\)</span>为真实的标签，<span class="math notranslate nohighlight">\(||u-y_t||_2\)</span>定义为两个网格中心点的<em>欧式距离</em>（euclidean distance）。此时，<span class="math notranslate nohighlight">\(w_{uy_t}\)</span>候选标签和真实标签的距离经过<span class="math notranslate nohighlight">\(\mathrm{softmax}\)</span>函数归一化的权重，当<span class="math notranslate nohighlight">\(||u-y_t||_2\)</span>越大则<span class="math notranslate nohighlight">\(w_{uy_t}\)</span>越大，损失的惩罚比重更大。</p>
+<p>当模型要预测的类别较少时，比如ResNet在ImageNet数据集只有1000个类别，<span class="math notranslate nohighlight">\(\mathrm{softmax}\)</span>函数的计算是没有问题的，但是当模型要预测的类别非常大时，比如在轨迹序列领域和自然语言处理领域中词表可能是万级别的大小，此时<span class="math notranslate nohighlight">\(\mathrm{softmax}\)</span>的计算会很慢并且难以训练。</p>
+<p>也就是说，<a class="reference internal" href="#equation-spa-loss">(10)</a>在训练时需要对整个词表做两次求和计算,当字典很大时，计算复杂度很大。</p>
+<div class="math notranslate nohighlight" id="equation-spa-loss-2">
+<span class="eqno">(12)<a class="headerlink" href="#equation-spa-loss-2" title="Link to this equation">#</a></span>\[
+  \sum_{u \in V}w_{uy_t}(w_{u}^Th_t-\log \sum_{v \in V} \exp(W_v^Th_t))
+\]</div>
+<p>对于这种问题，对于此类问题，自然语言处理领域通常的解决方法是<em>噪声对比估计</em>（noise constrative estimation）。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>关于噪声对比估计，可以参见<a class="reference external" href="http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">NCE</a>和<a class="reference external" href="https://www.tensorflow.org/extras/candidate_sampling.pdf">Candidate Sampling</a>。</p>
+</div>
+</section>
+<section id="id7">
+<h3>3.4.&nbsp;&nbsp;正负样本标签采样<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>作者基于对真实数据的观察，得出如下两个结论：</p>
+<ul class="simple">
+<li><p>除了和真实标签<span class="math notranslate nohighlight">\(y_t\)</span>相邻近的候选标签之外，<a class="reference internal" href="#equation-spa-weight">(11)</a>中绝大部分<span class="math notranslate nohighlight">\(w_{uy_t}\)</span>都非常小;</p></li>
+<li><p>对于<a class="reference internal" href="#equation-spa-loss">(10)</a>，无需精确计算而仅近似计算即可。</p></li>
+</ul>
+<p>基于以上两点，T2VEC中提出了近似计算<a class="reference internal" href="#equation-spa-loss">(10)</a><a class="reference internal" href="#equation-spa-weight">(11)</a>的方法(也及改进的NCE算法):</p>
+<ul class="simple">
+<li><p>候选标签集合: 计算权重只用计算<span class="math notranslate nohighlight">\(K\)</span>个距离<span class="math notranslate nohighlight">\(y_t\)</span>最近的网格即可，定义为<span class="math notranslate nohighlight">\(\mathcal{N}_K(y_t)\)</span>。</p></li>
+<li><p>负标签集合：使用NCE中的方法来采样负标签集合，即从<span class="math notranslate nohighlight">\(V-\mathcal{N}_K(y_t)\)</span>中采样负标签集合 <span class="math notranslate nohighlight">\(\mathcal{O}(y_t)\)</span>，其中<span class="math notranslate nohighlight">\(V\)</span>表示词表全集。</p></li>
+</ul>
+<p>所以公式<a class="reference internal" href="#equation-spa-loss">(10)</a><a class="reference internal" href="#equation-spa-weight">(11)</a>可以进一步推导为如下:</p>
+<div class="math notranslate nohighlight" id="equation-spa-loss-with-nce">
+<span class="eqno">(13)<a class="headerlink" href="#equation-spa-loss-with-nce" title="Link to this equation">#</a></span>\[
+  \mathcal{L}_3=-\sum_{t=1}^{|y|}\sum_{u \in \mathcal{N}_k(y_t)}w_{uy_t}(W_u^Th_t-\log\sum_{v \in \mathcal{NO}}\exp(W_v^Th_t))
+\]</div>
+<p>其中，</p>
+<div class="math notranslate nohighlight" id="equation-spa-weigth-with-nce">
+<span class="eqno">(14)<a class="headerlink" href="#equation-spa-weigth-with-nce" title="Link to this equation">#</a></span>\[
+  w_{uy_t}=\frac{exp(-||u-y_t||_2/\theta)}{\sum_{v \in \mathcal{N}_K(y_t)}\exp(-||v-y_t||_2/\theta)}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-nce-canidate-set">
+<span class="eqno">(15)<a class="headerlink" href="#equation-nce-canidate-set" title="Link to this equation">#</a></span>\[
+  \mathcal{NO}=\mathcal{N}_K(y_t) \cup \mathcal{O}(y_t)
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>对于负标签采样的方法，可参见Tensorflow中的<a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/nn/sampled_softmax_loss">sampled_softmax_loss</a>和<a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/v2.16.1/tensorflow/python/ops/candidate_sampling_ops.py">log_uniform_candidate_sampler</a> 的实现。</p>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2>4.&nbsp;&nbsp;代码示例<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>我们以<code class="docutils literal notranslate"><span class="pre">Notebook</span></code>的形式，使用<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>来实现T2VEC算法在Porto数据集上的训练和推理，参见<a class="reference internal" href="../examples/t2vec_example.html"><span class="std std-doc">T2VEC实践</span></a>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol class="arabic simple">
+<li><p>本文介绍了轨迹相似度任务、现状和难点。</p></li>
+<li><p>本文介绍了T2VEC算法，该算法基于seq2seq模型，使用样本对比增强和空间近邻的损失函数进行改进，能够捕获到高质量的序列表征。</p></li>
+</ol>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tuler.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TULER</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gmvsae.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GM-VSAE</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">T2VEC算法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">方法建模</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">优化函数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">正负样本标签采样</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">代码示例</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

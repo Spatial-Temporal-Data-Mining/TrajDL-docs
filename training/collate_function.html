@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Collate Function &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"aa21e19ad1664e5db9235a5a2ba482e9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "df2c8853aeb2475cbf57dffdd7db51d6": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "8839c9ccefe54ddcafcad1bccbe37d6f": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_aa21e19ad1664e5db9235a5a2ba482e9", "max": 1967.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_df2c8853aeb2475cbf57dffdd7db51d6", "tabbable": null, "tooltip": null, "value": 1967.0}}, "af12a7d26eab4863bf9772cee26c3dca": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4d64dd3e11ff4a09ac877b03afa9a10a": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "c5484510a99f41289133a14c1e7a2c35": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_af12a7d26eab4863bf9772cee26c3dca", "placeholder": "\u200b", "style": "IPY_MODEL_4d64dd3e11ff4a09ac877b03afa9a10a", "tabbable": null, "tooltip": null, "value": "construct\u2007vocab:\u2007100%"}}, "32daffc1998e4e4fa5083f34df811453": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "68766d1cf87645cb8c12ed422daa4ce8": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "cebdd4852cd74d179ca9d2caf7bd6fa3": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_32daffc1998e4e4fa5083f34df811453", "placeholder": "\u200b", "style": "IPY_MODEL_68766d1cf87645cb8c12ed422daa4ce8", "tabbable": null, "tooltip": null, "value": "\u20071967/1967\u2007[00:00&lt;00:00,\u2007199092.54it/s]"}}, "8c1cee06a61c4eefac0fef3d5383ed9e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6042e8a1def646d4a31d14b90013c312": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_c5484510a99f41289133a14c1e7a2c35", "IPY_MODEL_8839c9ccefe54ddcafcad1bccbe37d6f", "IPY_MODEL_cebdd4852cd74d179ca9d2caf7bd6fa3"], "layout": "IPY_MODEL_8c1cee06a61c4eefac0fef3d5383ed9e", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'training/collate_function';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lightning DataModule" href="lightning_data_module.html" />
+    <link rel="prev" title="Training" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data/index.html">Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data/sequence_and_dataset.html">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data/open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Training</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../available_algorithms/index.html">Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/tuler.html">TULER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/t2vec.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/gmvsae.html">GM-VSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/stlstm.html">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/training/collate_function.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Collate Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="collate-function">
+<h1>Collate Function<a class="headerlink" href="#collate-function" title="Link to this heading">#</a></h1>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>在1.0.0版本发布前，当前文档的内容可能会发生变化。</p>
+</div>
+<p>因为<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>是基于<code class="docutils literal notranslate"><span class="pre">Pytorch</span> <span class="pre">Lightning</span></code>构建的，本质依赖<code class="docutils literal notranslate"><span class="pre">Pytorch</span></code>的基础工具。因此在模型训练的时候，需要用户定义<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>和<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>，有些时候还需要定义<code class="docutils literal notranslate"><span class="pre">Sampler</span></code>。我们在前面章节里面讲述的<strong>批数据</strong>，也就是<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，这个就是<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>的子类。用户构建好后需要了解的是如何在<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>里面操作它。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>当前提供的<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>都是<a class="reference external" href="https://pytorch.org/docs/stable/data.html#map-style-datasets">May-style Dataset</a>。这种<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>可以直接通过下标进行数据的读取。因此这种数据集一般也不会太大，太大会导致内存放不下。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>目前<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>支持的公开数据集都可以使用<code class="docutils literal notranslate"><span class="pre">Map-style</span> <span class="pre">Dataset</span></code>实现，因此未来<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>会尝试支持<a class="reference external" href="https://pytorch.org/docs/stable/data.html#iterable-style-datasets">Iterable-style datasets</a>，这在数据集非常大的场景非常必要。</p>
+</div>
+<p>接下来我们说一下<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>与<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>的关系：</p>
+<ol class="arabic simple">
+<li><p>在不指定<code class="docutils literal notranslate"><span class="pre">Sampler</span></code>的情况下，<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>在生成一个batch的时候会先生成一组index，然后用这一组index去<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>里面获取数据。举个例子，当我们将<code class="docutils literal notranslate"><span class="pre">batch_size</span></code>设定为3的时候，且<code class="docutils literal notranslate"><span class="pre">shuffle</span></code>设定为<code class="docutils literal notranslate"><span class="pre">False</span></code>的时候，第一个batch的index是<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2]</span></code>，所以<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>内部会使用这些下标去<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>里面取数。然后如果<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>在发现取出来的数据恰好可以组成一个矩阵的时候，<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>会把它们拼接在一起，形成一个batch的<code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>。</p></li>
+<li><p>但是在<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>的场景里面，我们一般加载的是原始的<strong>位置序列</strong>或者<strong>轨迹序列</strong>，这些序列的长度并不相同，而且我们可能还需要做一些额外的操作，比如裁剪或扰动，这时候<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>里面有一个叫做<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>的概念就派上了用场。<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>会在使用下标<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2]</span></code>从<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>取数之后发生调用，然后在最终的batch生成之前结束调用。而<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>的返回值就是用户通过<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>拿到的batch数据。</p></li>
+</ol>
+<p>基于上述信息，我们可以发现，<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>已经实现好了<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>，而<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>里面最核心的工作就是<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>，因此很多时候使用<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>进行新的算法开发的时候，一个重要的工作就是如何从<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>里面生成batch数据，即如何编写<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于<strong>Map-style Dataset</strong>，<code class="docutils literal notranslate"><span class="pre">Pytorch</span></code>是如何通过给定下标<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2]</span></code>然后进行数据加载的呢？</p>
+<p>参照官方文档：<a class="reference external" href="https://pytorch.org/docs/2.5/data.html#torch.utils.data.Dataset">torch.utils.data.Dataset</a>，文档提到所有<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>的子类需要实现<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>方法，这个方法是<code class="docutils literal notranslate"><span class="pre">Python</span></code>自带的魔术方法，实现后就可以使用<code class="docutils literal notranslate"><span class="pre">[idx]</span></code>进行数据索引。然而文档内还提到一个<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>方法，这个并不是<code class="docutils literal notranslate"><span class="pre">Python</span></code>自身的魔术方法，而是<code class="docutils literal notranslate"><span class="pre">Pytorch</span></code>定义的一个方法，而且并不是必须要实现，这个方法的作用是<strong>加速批量数据的加载</strong>。</p>
+<p>我们可以找到<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>的源码，查看<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>是如何针对给定的indices进行数据加载的：<a class="reference external" href="https://github.com/pytorch/pytorch/blob/v2.5.0/torch/utils/data/_utils/fetch.py#L46">fetch.py</a>，从源码里面可以看到，<code class="docutils literal notranslate"><span class="pre">Pytorch</span></code>会优先使用<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>的<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>方法进行数据加载，其次才是使用<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>方法，取完之后的数据调用了<code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>方法。</p>
+<p>这里有一个细节：</p>
+<ul class="simple">
+<li><p>如果使用的是<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>，那么传给<code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>方法的参数是<code class="docutils literal notranslate"><span class="pre">self.dataset.__getitems__(possibly_batched_index)</span></code></p></li>
+<li><p>如果使用的是<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>，那么传给<code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>方法的参数是<code class="docutils literal notranslate"><span class="pre">[self.dataset[idx]</span> <span class="pre">for</span> <span class="pre">idx</span> <span class="pre">in</span> <span class="pre">possibly_batched_index]</span></code></p></li>
+</ul>
+<p>从<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>前面的文档可以知道，<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>在通过<code class="docutils literal notranslate"><span class="pre">[idx]</span></code>取值的时候，返回的仍然是<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，即<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>方法的返回值类型是<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>。同时，<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>也实现了<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>方法，其返回值类型仍然是<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>。这两者的区别在于size不同。因此对于<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供的<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，用户在使用<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>加载的时候会默认使用<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>方法，所以传入<code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>的参数一定是一个<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，而不是<code class="docutils literal notranslate"><span class="pre">List[BaseArrowDataset]</span></code>。</p>
+</div>
+<p>接下来我们以<code class="docutils literal notranslate"><span class="pre">TULER</span></code>算法为例，演示如何编写一个<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>的<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TULER</span></code>模型在训练的时候，需要三项内容：</p>
+<ol class="arabic simple">
+<li><p>一个位置序列组成的batch，类型是<code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>，shape是<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">num_timesteps)</span></code></p></li>
+<li><p>一个<code class="docutils literal notranslate"><span class="pre">List[int]</span></code>，表示每条序列的长度，其size是<code class="docutils literal notranslate"><span class="pre">batch_size</span></code></p></li>
+<li><p>一个标签的batch，类型是<code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>，shape是<code class="docutils literal notranslate"><span class="pre">(batch_size,)</span></code>，每一项对应每条序列的实际标签。</p></li>
+</ol>
+<p>这实际上是一个三元组。</p>
+<p>那么我们要定义的<code class="docutils literal notranslate"><span class="pre">collate_function</span></code>就很简单了，只要<strong>接受一个batch的输入，返回一个三元组</strong>即可。</p>
+<p>由于<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>实现了<code class="docutils literal notranslate"><span class="pre">__getitems__</span></code>方法，且返回一个<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>类型，这个batch的输入就是一个<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，其size等于<code class="docutils literal notranslate"><span class="pre">batch_size</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torch.nn.utils.rnn</span> <span class="kn">import</span> <span class="n">pad_sequence</span>
+
+<span class="kn">from</span> <span class="nn">trajdl.datasets.open_source</span> <span class="kn">import</span> <span class="n">GowallaDataset</span>
+<span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">LocSeq</span><span class="p">,</span> <span class="n">LocSeqDataset</span>
+<span class="kn">from</span> <span class="nn">trajdl.tokenizers</span> <span class="kn">import</span> <span class="n">LocSeqTokenizer</span>
+
+<span class="c1"># 取id小于5的用户的数据</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">GowallaDataset</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">return_as</span><span class="o">=</span><span class="s2">&quot;pl&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;check_in_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;ds&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;ds&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;loc_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;check_in_time&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;loc_seq&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;loc_seq&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="s2">&quot;loc_seq&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>load dataset: gowalla
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(56, 2)
+</pre></div>
+</div>
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 2)</small><table border="1" class="dataframe"><thead><tr><th>id</th><th>loc_seq</th></tr><tr><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;2&quot;</td><td>[&quot;887911&quot;, &quot;818731&quot;, … &quot;724392&quot;]</td></tr><tr><td>&quot;0&quot;</td><td>[&quot;23261&quot;, &quot;420315&quot;, … &quot;15372&quot;]</td></tr><tr><td>&quot;0&quot;</td><td>[&quot;25151&quot;, &quot;11934&quot;, … &quot;18417&quot;]</td></tr><tr><td>&quot;2&quot;</td><td>[&quot;741379&quot;, &quot;339909&quot;, … &quot;1933179&quot;]</td></tr><tr><td>&quot;2&quot;</td><td>[&quot;298949&quot;, &quot;24367&quot;, … &quot;1327534&quot;]</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 将user id存储到entity_id字段里面</span>
+<span class="n">loc_seqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LocSeq</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">loc_seq</span><span class="p">,</span> <span class="n">entity_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">loc_seq</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">()]</span>
+
+<span class="c1"># 构建tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">LocSeqTokenizer</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">loc_seqs</span><span class="p">)</span>
+
+<span class="c1"># 构建一个BaseArrowDataset</span>
+<span class="n">train_ds</span> <span class="o">=</span> <span class="n">LocSeqDataset</span><span class="o">.</span><span class="n">init_from_loc_seqs</span><span class="p">(</span><span class="n">loc_seqs</span><span class="p">)</span>
+
+<span class="c1"># 可以看到有56条序列</span>
+<span class="n">train_ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6042e8a1def646d4a31d14b90013c312"}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LocSeqDataset(size=56)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collate_function</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">LocSeqDataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">:</span> <span class="n">LocSeqTokenizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    将LocSeqDataset转换为TULER需要的样本</span>
+<span class="sd">    - 序列（含padding）</span>
+<span class="sd">    - 序列长度</span>
+<span class="sd">    - 标签（用户id）</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seqs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lengths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 取出我们需要的两列</span>
+    <span class="n">seq_col</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">seq</span>
+    <span class="n">entity_id_col</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">entity_id</span>
+
+    <span class="c1"># 按行遍历batch</span>
+    <span class="k">for</span> <span class="n">line_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)):</span>
+        <span class="c1"># 将位置序列使用tokenizer编码，以torch.LongTenso的类型返回</span>
+        <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize_loc_seq</span><span class="p">(</span><span class="n">seq_col</span><span class="p">[</span><span class="n">line_idx</span><span class="p">],</span> <span class="n">return_as</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">))</span>
+        <span class="c1"># 记录序列的长度</span>
+        <span class="n">lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seqs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># 添加标签</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">entity_id_col</span><span class="p">[</span><span class="n">line_idx</span><span class="p">]</span><span class="o">.</span><span class="n">as_py</span><span class="p">()))</span>
+
+    <span class="c1"># 返回三元组</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="c1"># 对序列添加padding，padding的值就用tokenizer维护的.pad属性</span>
+        <span class="n">pad_sequence</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding_value</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad</span><span class="p">),</span>
+        <span class="n">lengths</span><span class="p">,</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义DataLoader</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">collate_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">))</span>
+
+<span class="c1"># 读取一个batch看看</span>
+<span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(tensor([[154, 155, 156, 157, 158, 159],
+         [ 53,  54, 160,  54, 161, 162]]),
+ [6, 6],
+ tensor([2, 0]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>当然，我们还可以封装一下上面的三元组：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">TULERSampleExample</span><span class="p">:</span>
+    <span class="n">seqs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span>
+    <span class="n">lengths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">collate_function_v2</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">LocSeqDataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">:</span> <span class="n">LocSeqTokenizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    将collate_function返回值的三元组封装成一个TULERSampleExample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seqs</span><span class="p">,</span> <span class="n">lengths</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">collate_function</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    
+    <span class="c1"># 返回TULERSampleExample</span>
+    <span class="k">return</span> <span class="n">TULERSampleExample</span><span class="p">(</span>
+        <span class="c1"># 对序列添加padding，padding的值就用tokenizer维护的.pad属性</span>
+        <span class="n">seqs</span><span class="o">=</span><span class="n">seqs</span><span class="p">,</span>
+        <span class="n">lengths</span><span class="o">=</span><span class="n">lengths</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义DataLoader</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">collate_function_v2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">))</span>
+
+<span class="c1"># 读取一个batch看看</span>
+<span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+<span class="n">batch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TULERSampleExample(seqs=tensor([[154, 155, 156, 157, 158, 159],
+        [ 53,  54, 160,  54, 161, 162]]), lengths=[6, 6], labels=tensor([2, 0]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span><span class="o">.</span><span class="n">batch_size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">seqs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Tensor
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Tensor
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>内支持的算法目前都已经提供了像上面<code class="docutils literal notranslate"><span class="pre">TULERSampleExample</span></code>一样的样本类，放在<code class="docutils literal notranslate"><span class="pre">trajdl.common.samples</span></code>目录下。</p>
+<p>有一些算法需要的输入很多，比如5、6个参数，使用上述这样的样本类管理会比较清晰。</p>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Training</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lightning_data_module.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lightning DataModule</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

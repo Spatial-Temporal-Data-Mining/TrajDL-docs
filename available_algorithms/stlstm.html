@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HST-LSTM &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'available_algorithms/stlstm';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hands-on Example" href="../examples/index.html" />
+    <link rel="prev" title="GM-VSAE" href="gmvsae.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data/index.html">Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data/sequence_and_dataset.html">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data/open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../training/index.html">Training</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/collate_function.html">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Algorithms</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tuler.html">TULER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t2vec.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gmvsae.html">GM-VSAE</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/available_algorithms/stlstm.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HST-LSTM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">术语定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">符号定义</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">HST-LSTM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">HST-LSTM模块</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">编码器</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">全局上下文编码</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">解码器和位置预测</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">优化目标</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">代码示例</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hst-lstm">
+<h1>HST-LSTM<a class="headerlink" href="#hst-lstm" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.ijcai.org/proceedings/2018/0324.pdf">[ICJAI18]HST-LSTM: A Hierarchical Spatial-Temporal Long-Short Term Memory
+Network for Location Prediction </a></p>
+<section id="id1">
+<h2>1.&nbsp;&nbsp;摘要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>位置预测任务（Location Prediction）是轨迹序列分析中的一个重要研究领域。本文中，作者提出了一种改进版的HST-LSTM模型，旨在解决在弱时间约束下的用户下一位置预测问题。在此模型中，作者基于LSTM进行了改进，融入了时空相关的约束，以缓解数据稀疏性带来的挑战。此外，作者还提出了一个Encoder-Decoder层级结构的HST-LSTM模型，即HST-LSTM，在该模型中，引入了上下文位置信息表征层，这一层将用户历史访问的上下文位置信息整合到模型中，从而有效提升下一位置预测的准确性。</p>
+</section>
+<section id="id2">
+<h2>2.&nbsp;&nbsp;预备知识<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>2.1.&nbsp;&nbsp;术语定义<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>在介绍HST-LSTM之前，需要先介绍该论文中提出的相关术语：</p>
+<ul class="simple">
+<li><p><strong>AOI</strong> (Area of Interest，感兴趣区域)：指代一个地理位置上的提供相关功能的区域，比如购物商场、居民小区、公司大厦等。AOI呈现的方式是在地图上，会将某个区域使用多边形包围起来，形成一个封闭的区域，该区域即为一个AOI。</p></li>
+<li><p><strong>访问位置记录</strong> (Visit Record)：指代一个用户在过去的一段时间内（几周或几个月）到访过的AOI的集合。</p></li>
+<li><p><strong>访问会话</strong>（Visit Session）：用户在特定时间段内访问过的AOI序列（比如在本文中，用自然天来分割，一个时间段就是一天）。在同一个会话里面的AOI具有较强的相关性，能够揭示用户行动模式。</p></li>
+<li><p><strong>访问会话序列</strong>（Visit Session Sequence）：一个访问会话序列包含了一个用户连续的访问会话。一个用户历史的访问会话信息可以看成是上下文信息，可以用来帮助预测用户下一个要访问的AOI或者未来访问会话。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>2.2.&nbsp;&nbsp;符号定义<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>对于上述的领域术语，现在来给出数学上的符号定义，便于后续论文的解读。</p>
+<p>假设一个用户<span class="math notranslate nohighlight">\(u\)</span>在过去有<span class="math notranslate nohighlight">\(n\)</span>个访问会话<span class="math notranslate nohighlight">\(\{S_1, S_2, \ldots, S_n\}\)</span>，其中一个访问会话<span class="math notranslate nohighlight">\(S_i(i \in [1, n])\)</span>由一个AOI序列<span class="math notranslate nohighlight">\(\{l_1^i, l_2^i, \ldots, l_{m_i}^i\}\)</span>构成，<span class="math notranslate nohighlight">\(m_i\)</span>表示访问会话<span class="math notranslate nohighlight">\(S_i\)</span>的长度。因此，该用户<span class="math notranslate nohighlight">\(u\)</span>的访问记录<span class="math notranslate nohighlight">\(V_u\)</span>可以表示为<span class="math notranslate nohighlight">\(\{\ldots, l_1^i, l_2^i, \ldots, l_{m_i}^i,\ldots,l_1^n, l_2^n, \ldots, l_{m_n}^n\}\)</span>，为了简单起见，在这里定义<span class="math notranslate nohighlight">\(V_u\)</span>为<span class="math notranslate nohighlight">\(\{l_1^u, l_2^u, \ldots, l_N^u\}\)</span>，其中<span class="math notranslate nohighlight">\(N\)</span>是用户<span class="math notranslate nohighlight">\(u\)</span>访问过的所有位置。</p>
+<p>因此，在本文中位置预测任务可以定义为: 给定一个用户的<span class="math notranslate nohighlight">\(u\)</span>前<span class="math notranslate nohighlight">\(j\)</span>个访问的位置集合<span class="math notranslate nohighlight">\(\{l_1^u, \ldots, l_j^u\}\)</span>，预测未来<span class="math notranslate nohighlight">\(N-j\)</span>个用户最有可能访问的位置集合<span class="math notranslate nohighlight">\(\{l_{j+1}^u, \ldots,l_N^u\}\)</span>。</p>
+<figure class="align-center" id="stlstm-aoi">
+<a class="reference internal image-reference" href="../_images/stlstm_aoi.jpg"><img alt="AOI示例" src="../_images/stlstm_aoi.jpg" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图1. AOI示例（图源：<a class="reference external" href="https://www.ijcai.org/proceedings/2018/0324.pdf">HST-LSTM</a>）</span><a class="headerlink" href="#stlstm-aoi" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="id5">
+<h2>3.&nbsp;&nbsp;HST-LSTM<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>HST-LSTM的结构图如下：</p>
+<figure class="align-center" id="hst-lstm-arch">
+<a class="reference internal image-reference" href="../_images/stlstm_arch.jpg"><img alt="HST-LSTM结构图" src="../_images/stlstm_arch.jpg" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图2. HST-LSTM结构图（图源：<a class="reference external" href="https://www.ijcai.org/proceedings/2018/0324.pdf">HST-LSTM</a>）</span><a class="headerlink" href="#hst-lstm-arch" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>HST-LSTM是编码器-解码器架构的模型，其中复用最多的模块HST-LSTM是基于标准LSTM融入时间和空间的信息改进的，Contextual-LSTM模块将历史的访问会话进行表征，引入上下文的信息。</p>
+<section id="id6">
+<h3>3.1.&nbsp;&nbsp;HST-LSTM模块<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>HST-LSTM是基于标准的LSTM改进的，给定时间<span class="math notranslate nohighlight">\(t\)</span>时刻的输入<span class="math notranslate nohighlight">\(l_t\)</span>，假设HST-LSTM输出的隐藏状态变量为<span class="math notranslate nohighlight">\(h_t\)</span>，下面给出HST-LSTM的推理公式:</p>
+<div class="math notranslate nohighlight" id="equation-g-t">
+<span class="eqno">(1)<a class="headerlink" href="#equation-g-t" title="Link to this equation">#</a></span>\[
+g_t = \phi(\mathbf{W}_{lg}l_t + W_{hg}h_{t-1} + b_g)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-i-t">
+<span class="eqno">(2)<a class="headerlink" href="#equation-i-t" title="Link to this equation">#</a></span>\[
+i_t = \sigma(\mathbf{W}_{li}l_t + W_{h_i}h_{t-1} + F_i(s_{t-1},q_{t-1}) + b_i)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-f-t">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f-t" title="Link to this equation">#</a></span>\[
+f_t = \sigma(\mathbf{W}_{lf}l_t + W_{hf}h_{t-1} + F_f(s_{t-1},q_{t-1}) + b_f)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-o-t">
+<span class="eqno">(4)<a class="headerlink" href="#equation-o-t" title="Link to this equation">#</a></span>\[
+o_t = \sigma(\mathbf{W}_{lo}l_t + W_{ho}h_{t-1} + F_f(s_{t-1},q_{t-1}) + b_o)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-c-t">
+<span class="eqno">(5)<a class="headerlink" href="#equation-c-t" title="Link to this equation">#</a></span>\[
+c_t = f_t \cdot c_{t-1} + i_t \cdot g_t
+\]</div>
+<div class="math notranslate nohighlight" id="equation-h-t">
+<span class="eqno">(6)<a class="headerlink" href="#equation-h-t" title="Link to this equation">#</a></span>\[
+h_t = o_t \cdot \phi(c_t)
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(s,q \in \mathbb{R}^d\)</span>，为HST-LSTM中定义的空间影响因子和时间影响因子。<span class="math notranslate nohighlight">\(s_{t-1}\)</span>和<span class="math notranslate nohighlight">\(q_{t-1}\)</span>为位置<span class="math notranslate nohighlight">\(l_{t-1}\)</span>和位置<span class="math notranslate nohighlight">\(l_t\)</span>之间的空间和时间上的向量表示。<span class="math notranslate nohighlight">\(F(\cdot)\)</span>是一个线性加法函数，定义为如下：</p>
+<div class="math notranslate nohighlight" id="equation-calc-sp-feat">
+<span class="eqno">(7)<a class="headerlink" href="#equation-calc-sp-feat" title="Link to this equation">#</a></span>\[
+F_k(s_{t-1}, q_{t-1}) = \mathbf{W}_{sk}s_{t-1} + \mathbf{W}_{qk}q_{t-1},k=i,f,o
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\mathbf{W}_{sk},\mathbf{W}_{qk} \in \mathbb{R}^{|c| \times d}\)</span>是线性转换矩阵，<span class="math notranslate nohighlight">\(|c|\)</span>表示HST-LSTM隐藏层的维度。</p>
+<p>此处，因为物理世界中，在两个AOI之间采集到的时间间隔和空间间隔都是连续的变量，为了能够将其作为模型的输入，需要离散化转换为token，结合向量嵌入层（embedding layer）就可以作为模型的输入。在这里，作者离散化的方式是将这些连续的间隔进行切片（slot）操作，每一片都是一个token。具体的离散化方式在下文进行介绍。</p>
+<p>先定义一个真实世界中的时间间隔<span class="math notranslate nohighlight">\(v_q\)</span>和空间间隔<span class="math notranslate nohighlight">\(v_s\)</span>，比如从一个用户从商场购物区<span class="math notranslate nohighlight">\(AOI_1\)</span>移动到居住小区<span class="math notranslate nohighlight">\(AOI_2\)</span>，所花费的时间是<span class="math notranslate nohighlight">\(v_q\)</span>，移动的距离是<span class="math notranslate nohighlight">\(v_s\)</span>，于是为了将<span class="math notranslate nohighlight">\(v_q\)</span>和<span class="math notranslate nohighlight">\(v_s\)</span>离散化，有如下计算：</p>
+<div class="math notranslate nohighlight" id="equation-time-slot">
+<span class="eqno">(8)<a class="headerlink" href="#equation-time-slot" title="Link to this equation">#</a></span>\[
+q = \frac{\mathbf{Q}_{u(v_q)}[u(v_q)-v_q] +\mathbf{Q}_{l(v_q)}[v_q - l(v_q)]}{u(v_q) - l(v_q)}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-distance-slot">
+<span class="eqno">(9)<a class="headerlink" href="#equation-distance-slot" title="Link to this equation">#</a></span>\[
+s = \frac{\mathbf{S}_{u(v_s)}[u(v_s)-v_s] +\mathbf{S}_{l(v_s)}[v_s - l(v_s)]}{u(v_s) - l(v_s)}
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(u(v_q)\)</span>和<span class="math notranslate nohighlight">\(l(v_q)\)</span>是<span class="math notranslate nohighlight">\(v_q\)</span>在时间切片中的上界和下界，<span class="math notranslate nohighlight">\(u(v_s)\)</span>和<span class="math notranslate nohighlight">\(l(v_s)\)</span>是距离切片中的上界和下界（可以认为是token）。<span class="math notranslate nohighlight">\(Q \in \mathbb{R}^{N_q \times d}\)</span>和<span class="math notranslate nohighlight">\(S \in \mathbb{R}^{N_s \times d}\)</span>分别是时间和空间的因子矩阵（可以认为是embedding matrix），其中<span class="math notranslate nohighlight">\(N_q\)</span>和<span class="math notranslate nohighlight">\(N_s\)</span>分别表示时间和空间上的总的切片数量（可以认为是vocabulary size）</p>
+<p>举一个例子，假如时间切片的方式是每小时切成一片，距离切片的方式是每200米切成一片，那么用户从购物商场回到自己的居住小区，位置转移花费的时间是1.3小时，移动的距离是700米，那么<span class="math notranslate nohighlight">\(v_q=1.3\)</span>，<span class="math notranslate nohighlight">\(v_s=700\)</span>，<span class="math notranslate nohighlight">\(v_q\)</span>在时间片<span class="math notranslate nohighlight">\([2, 3]\)</span>之间，<span class="math notranslate nohighlight">\(v_s\)</span>在距离切片<span class="math notranslate nohighlight">\([3, 4]\)</span>之间，所以有<span class="math notranslate nohighlight">\(u(v_q)=3, l(v_q)=2, u(v_s)=4, l(v_s)=3\)</span>向量化的<span class="math notranslate nohighlight">\(q\)</span>和<span class="math notranslate nohighlight">\(v\)</span>。</p>
+</section>
+<section id="id7">
+<h3>3.2.&nbsp;&nbsp;编码器<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>接下来介绍编码器的工作原理。如上文对访问会话的介绍所言，在一个会话内的访问位置序列（AOI sequence）具有较强的相关性，给定一个用户<span class="math notranslate nohighlight">\(u\)</span>的访问记录<span class="math notranslate nohighlight">\(V_u\)</span>，其包含访问会话<span class="math notranslate nohighlight">\(\{S_1, S_2, \ldots,S_n\}\)</span>,对于<span class="math notranslate nohighlight">\(i \in [1, n-1]\)</span>的时间步，首先将其访问会话<span class="math notranslate nohighlight">\(S_i = \{l_1^i, l_2^i, \ldots, l_{m_i}^i\}\)</span>编码成向量表示：</p>
+<div class="math notranslate nohighlight" id="equation-encoder-l">
+<span class="eqno">(10)<a class="headerlink" href="#equation-encoder-l" title="Link to this equation">#</a></span>\[
+\mathbf{l}_j^i = \mathbf{W}_l \cdot l_j^i
+\]</div>
+<div class="math notranslate nohighlight" id="equation-encoder-h">
+<span class="eqno">(11)<a class="headerlink" href="#equation-encoder-h" title="Link to this equation">#</a></span>\[
+\mathbf{h}_j^{e,i} = STLSTM^e(\mathbf{h}_{j-1}^{e,i},\mathbf{l}_j^i)
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\mathbf{h}_0^{e,i}= \mathbf{0},j=1,\ldots,m_i,\mathbf{h}_e^i=\mathbf{h}_{m_i}^{e,i},\mathbf{h}_e^0=\mathbf{0}\)</span>。编码器利用HST-LSTM模块，将访问会话<span class="math notranslate nohighlight">\(S_i\)</span>中的AOI位置序列编码成向量表示，其中<span class="math notranslate nohighlight">\(\mathbf{W}_l\)</span>是向量嵌入层，将AOI位置ID转换为向量表示。我们将编码器输出的一个会话的最后一个隐藏状态<span class="math notranslate nohighlight">\(h_{m_i}^{e,i}\)</span>作为整个访问会话<span class="math notranslate nohighlight">\(S_i\)</span>的向量表示，定义为<span class="math notranslate nohighlight">\(\mathbf{h}_e^i\)</span>。</p>
+</section>
+<section id="id8">
+<h3>3.3.&nbsp;&nbsp;全局上下文编码<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>在将访问会话编码成向量之后，我们得到所有访问会话的向量表示<span class="math notranslate nohighlight">\(\{\mathbf{h}_e^0,\mathbf{h}_e^1,\ldots,\mathbf{h}_e^{n-1}\}\)</span>, 我们使用LSTM模块来编码访问会话之间的上下文向量表示，以此来捕获长周期的特征：</p>
+<div class="math notranslate nohighlight" id="equation-global-context">
+<span class="eqno">(12)<a class="headerlink" href="#equation-global-context" title="Link to this equation">#</a></span>\[
+h_c^i = LSTM^c(h_c^{i-1}, h_c^{i-1})
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(h_c^0 = \mathbf{0};i=1, \ldots,n\)</span>。在<a class="reference internal" href="#equation-global-context">(12)</a>的<span class="math notranslate nohighlight">\(\mathbf{h}_c^i\)</span>表示时间<span class="math notranslate nohighlight">\(t\)</span>步的全局上下文表示。</p>
+</section>
+<section id="id9">
+<h3>3.4.&nbsp;&nbsp;解码器和位置预测<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>对于用户<span class="math notranslate nohighlight">\(u\)</span>,我们有起访问会话<span class="math notranslate nohighlight">\({S_1, S_2, \ldots, S_n}\)</span>以及上下文向量表征<span class="math notranslate nohighlight">\(\{\mathbf{h}_c^0,\mathbf{h}_c^1,\ldots,\mathbf{h}_c^{n-1}\}\)</span>，所以解码的计算公式如下：</p>
+<div class="math notranslate nohighlight" id="equation-decoder-l">
+<span class="eqno">(13)<a class="headerlink" href="#equation-decoder-l" title="Link to this equation">#</a></span>\[
+\mathbf{l}_j^i=\mathbf{W}_l \cdot l_j^i
+\]</div>
+<div class="math notranslate nohighlight" id="equation-decode-h">
+<span class="eqno">(14)<a class="headerlink" href="#equation-decode-h" title="Link to this equation">#</a></span>\[
+\mathbf{h}_j^{d,i}=STLSTM^d(\mathbf{h}_{j-1}^{d,i}, \mathbf{l}_j^i)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-decode-des">
+<span class="eqno">(15)<a class="headerlink" href="#equation-decode-des" title="Link to this equation">#</a></span>\[
+\mathbf{h}_0^{d,i}=\mathbf{h}_c^i;j=1,\ldots,m_i;
+\]</div>
+<p>其中,<span class="math notranslate nohighlight">\(l_j^i\)</span>表示访问会话<span class="math notranslate nohighlight">\(S_i\)</span>中的第<span class="math notranslate nohighlight">\(j\)</span>个AOItoken。</p>
+<p>我们定义<span class="math notranslate nohighlight">\(\mathbf{h}_j^{d,i}\)</span>是Session <span class="math notranslate nohighlight">\(S_i\)</span>中过去经过的<span class="math notranslate nohighlight">\(j\)</span>各区域的综合特征，表征这用户在时间<span class="math notranslate nohighlight">\(j\)</span>内的路由目的，因此，我们基于此来预测该用户的下一位置概率：</p>
+<div class="math notranslate nohighlight" id="equation-project-layer">
+<span class="eqno">(16)<a class="headerlink" href="#equation-project-layer" title="Link to this equation">#</a></span>\[
+\mathbf{p}_j^i=softmax(\mathbf{W}_p \cdot \mathbf{h}_j^{d,i} + b_p)
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{p}_j^i\)</span>就是预测下一位置的AOI的概率，于是可以得到下一AOI最大的概率为：</p>
+<div class="math notranslate nohighlight" id="equation-max-prob">
+<span class="eqno">(17)<a class="headerlink" href="#equation-max-prob" title="Link to this equation">#</a></span>\[
+p_j^i = max(\mathbf{p}_j^i)
+\]</div>
+</section>
+<section id="id10">
+<h3>3.5.&nbsp;&nbsp;优化目标<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>在下一位置预测的问题中，本质上还是对候选位置的分类任务，所以优化的目标与分类任务一样——最大似然函数：</p>
+<div class="math notranslate nohighlight" id="equation-optimization">
+<span class="eqno">(18)<a class="headerlink" href="#equation-optimization" title="Link to this equation">#</a></span>\[
+J(\theta)=\sum_{k=1}^{\mathcal{N}} \sum_{S_i \in V^k} \sum_{j=1}^{m_i}\log p(l_j^i|l_1^i, l_2^i,\ldots,l_{j-1}^i, \mathbf{\theta})
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\mathcal{N}\)</span>表示所有的访问记录，<span class="math notranslate nohighlight">\(l_j^i\)</span>表示Session <span class="math notranslate nohighlight">\(S_i\)</span>第<span class="math notranslate nohighlight">\(j\)</span>个AOI，<span class="math notranslate nohighlight">\(m_i\)</span>表示<span class="math notranslate nohighlight">\(S_i\)</span>中AOI的数量。<span class="math notranslate nohighlight">\(\theta\)</span>表示所有的模型参数。</p>
+<p>显然，该优化目标能够转换为<em>交叉熵</em>（cross entropy）的计算，在此不做赘述。</p>
+</section>
+</section>
+<section id="id11">
+<h2>4.&nbsp;&nbsp;代码示例<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>我们以<code class="docutils literal notranslate"><span class="pre">Notebook</span></code>的形式，使用<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>实现了ST-LSTM的训练和推理，参见<a class="reference internal" href="../examples/stlstm_example.html"><span class="std std-doc">ST-LSTM代码实践</span></a>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol class="arabic simple">
+<li><p>本文介绍了轨迹序列领域中的位置预测任务。</p></li>
+<li><p>本文介绍了HST-LSTM模型，其引入时空数据特征和全局上下文特征来进行特征的融合增强。</p></li>
+</ol>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gmvsae.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">GM-VSAE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../examples/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hands-on Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">术语定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">符号定义</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">HST-LSTM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">HST-LSTM模块</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">编码器</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">全局上下文编码</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">解码器和位置预测</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">优化目标</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">代码示例</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

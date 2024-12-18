@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sequence and Dataset &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data/sequence_and_dataset';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Open Source Datasets" href="open_source_dataset.html" />
+    <link rel="prev" title="Data" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../training/index.html">Training</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/collate_function.html">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../available_algorithms/index.html">Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/tuler.html">TULER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/t2vec.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/gmvsae.html">GM-VSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/stlstm.html">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/data/sequence_and_dataset.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sequence and Dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence">Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locseqdataset">LocSeqDataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectorydataset">TrajectoryDataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">数据集的持久化</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sequence-and-dataset">
+<h1>Sequence and Dataset<a class="headerlink" href="#sequence-and-dataset" title="Link to this heading">#</a></h1>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>在1.0.0版本发布前，当前文档的内容可能会发生变化。</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>主要处理时空序列数据上的深度学习任务，因此在<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>里面对时空序列数据进行了抽象，分为<strong>位置序列</strong>和<strong>轨迹序列</strong>两种。</p>
+<p>这两种序列都是表示一个实体的移动轨迹，只不过前者是位置id组成的序列，后者是轨迹点组成的序列。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>针对上述两种类型的数据，按单条序列和多条序列分别定义了<strong>序列</strong>和<strong>数据集</strong>的概念。</p>
+<ul class="simple">
+<li><p>前者一般表示单条序列，用户可以将自己的数据集处理成多条这样的序列。</p></li>
+<li><p>对于一个包含多条序列的数据集，我们一般使用后者<strong>数据集</strong>表示。</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<img alt="序列与数据集的关系图" src="../_images/sequence_and_dataset.svg" />
+<figcaption>
+<p><span class="caption-text">序列有一个抽象基类是<code class="docutils literal notranslate"><span class="pre">BaseSeq</span></code>，数据集有一个抽象基类<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>。这两项都是按<strong>位置序列</strong>和<strong>轨迹序列</strong>进行细分。</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>未来<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>会考虑将两种序列的API完全合并，目前大部分接口是相同的。</p>
+</div>
+<section id="sequence">
+<h2>1.&nbsp;&nbsp;Sequence<a class="headerlink" href="#sequence" title="Link to this heading">#</a></h2>
+<p>对于单条序列，<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了两种基础的序列类型用来表示<strong>位置序列</strong>和<strong>轨迹序列</strong>，分别是<code class="docutils literal notranslate"><span class="pre">LocSeq</span></code>和<code class="docutils literal notranslate"><span class="pre">Trajectory</span></code>。</p>
+<p>举个例子：我们有<code class="docutils literal notranslate"><span class="pre">A</span></code>、<code class="docutils literal notranslate"><span class="pre">B</span></code>、<code class="docutils literal notranslate"><span class="pre">C</span></code>、<code class="docutils literal notranslate"><span class="pre">D</span></code>是4个不同的位置，一个人接连到达了这四个位置，那么这个人经过的位置序列可以表示为<code class="docutils literal notranslate"><span class="pre">[A,</span> <span class="pre">B,</span> <span class="pre">C,</span> <span class="pre">D]</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了一个简单的类型<code class="docutils literal notranslate"><span class="pre">LocSeq</span></code>可以承载这样的位置序列：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">LocSeq</span>
+
+<span class="n">locseq</span> <span class="o">=</span> <span class="n">LocSeq</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">locseq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LocSeq(size=4, loc_seq=&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, ...)
+</pre></div>
+</div>
+</div>
+</div>
+<p>对于轨迹数据，假设我们有一组经纬度点，表示一个人的实时GPS数据：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">-</span><span class="mf">8.608833</span><span class="p">,</span> <span class="mf">41.147586</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">8.608707</span><span class="p">,</span> <span class="mf">41.147685</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">8.608473</span><span class="p">,</span> <span class="mf">41.14773</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">8.608284</span><span class="p">,</span> <span class="mf">41.148054</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">8.607708</span><span class="p">,</span> <span class="mf">41.148999</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">8.60742</span><span class="p">,</span> <span class="mf">41.149719</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>我们可以使用<code class="docutils literal notranslate"><span class="pre">Trajectory</span></code>类型来表示这个数据</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">Trajectory</span>
+
+<span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608833</span><span class="p">,</span> <span class="mf">41.147586</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608707</span><span class="p">,</span> <span class="mf">41.147685</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608473</span><span class="p">,</span> <span class="mf">41.14773</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608284</span><span class="p">,</span> <span class="mf">41.148054</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.607708</span><span class="p">,</span> <span class="mf">41.148999</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.60742</span><span class="p">,</span> <span class="mf">41.149719</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trajectory(entity_id=None, length=6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code>还可以通过<code class="docutils literal notranslate"><span class="pre">numpy</span></code>创建：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">Trajectory</span>
+
+<span class="n">seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608833</span><span class="p">,</span> <span class="mf">41.147586</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608707</span><span class="p">,</span> <span class="mf">41.147685</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608473</span><span class="p">,</span> <span class="mf">41.14773</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.608284</span><span class="p">,</span> <span class="mf">41.148054</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.607708</span><span class="p">,</span> <span class="mf">41.148999</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">8.60742</span><span class="p">,</span> <span class="mf">41.149719</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>效果是一样的。</p>
+</div>
+<p>这两种数据类型本质上除了输入的序列不同（一个是位置序列，一个是轨迹点序列），其他的属性和方法都是一致的。可以获取它的长度，它的id等信息</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">locseq</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">traj</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">locseq</span><span class="o">.</span><span class="n">entity_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">entity_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+6
+None
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>上述两种类型的数据都是单条序列的数据，可以表示一条位置序列、或者一条轨迹序列。它的优点是清晰、简单，主要是给用户提供一个数据管理的工具。</p>
+<p>这两种类型的序列数据目前具有6种属性：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seq</code></td>
+<td><code>List[str]</code> or <code>numpy.ndarray</code></td>
+<td>这一项表示序列的位置信息。<code>LocSeq</code>的这一项是<code>List[str]</code>，表示位置序列；<code>Trajectory</code>的这一项是<code>numpy.ndarray</code>，表示经纬度序列，numpy.ndarray一定要是2列，第一列是经度，第二列是纬度。</td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>str</code></td>
+<td>id项，这一项用户可以根据自己的需求设定，可以设定为序列的id，或者实体的id。</td>
+</tr>
+<tr>
+<td><code>ts_seq</code></td>
+<td><code>List[int]</code></td>
+<td>这一项表示每个位置的时间戳，可以是到达时的时间戳，也可以是离开时的时间戳，暂时没有区分，时间戳用int类型，具体的单位由用户自行决定。</td>
+</tr>
+<tr>
+<td><code>ts_delta</code></td>
+<td><code>List[float]</code></td>
+<td>表示两个连续的位置之间的时间戳的差值。</td>
+</tr>
+<tr>
+<td><code>dis_delta</code></td>
+<td><code>List[float]</code></td>
+<td>表示两个连续的位置之间的位移差值。</td>
+</tr>
+<tr>
+<td><code>start_ts</code></td>
+<td><code>int</code></td>
+<td>表示这条序列的起始时间戳，具体的单位由用户自行决定。</td>
+</tr>
+</tbody>
+</table>
+<p>其中只有第一项是要求用户一定要传入的，其他项都是可选的项，可以直接通过<code class="docutils literal notranslate"><span class="pre">.entity_id</span></code>这样的属性进行获取。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>目前这样的序列格式还不能满足用户灵活自定义额外的特征，比如一些连续性特征和离散型特征，会在未来版本提供支持。</p>
+</div>
+</section>
+<section id="dataset">
+<h2>2.&nbsp;&nbsp;Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>对于多条序列，<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了基于<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>的数据管理方式，称为<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，细分为<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>和<code class="docutils literal notranslate"><span class="pre">TrajectoryDataset</span></code>。</p>
+<p>这两种数据集是为了管理多条序列使用，它的主要特性是：</p>
+<dl class="simple myst">
+<dt>高性能</dt><dd><p>基于列存的<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>数据类型提供了高效的存储与查询性能。</p>
+</dd>
+<dt>零拷贝</dt><dd><p>基于<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>的数据集在取数的时候可以避免数据拷贝，而且基于<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>的数据集在<code class="docutils literal notranslate"><span class="pre">Pytorch</span> <span class="pre">dataloader</span></code>处于多进程时的状态下也可以避免数据拷贝。</p>
+</dd>
+<dt>扩展性好</dt><dd><p>基于<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>的数据集可以与<code class="docutils literal notranslate"><span class="pre">Polars</span></code>、<code class="docutils literal notranslate"><span class="pre">Pandas</span></code>、<code class="docutils literal notranslate"><span class="pre">Numpy</span></code>等成熟工具以极低的损耗无缝转换。用户可以基于<code class="docutils literal notranslate"><span class="pre">Polars</span></code>快速进行数据处理，然后一键导入成<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>，而且<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>也可以快速转换为<code class="docutils literal notranslate"><span class="pre">Polars</span> <span class="pre">DataFrame</span></code>或<code class="docutils literal notranslate"><span class="pre">Pandas</span> <span class="pre">DataFrame</span></code>。而且<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>与<code class="docutils literal notranslate"><span class="pre">Parquet</span></code>的交互也非常简单，很自然就可以扩展到分布式计算框架<code class="docutils literal notranslate"><span class="pre">Spark</span></code>上，这让大数据平台处理后的数据集无缝导入到<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>成为可能。</p>
+</dd>
+</dl>
+<section id="locseqdataset">
+<h3>2.1.&nbsp;&nbsp;LocSeqDataset<a class="headerlink" href="#locseqdataset" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>与<code class="docutils literal notranslate"><span class="pre">LocSeq</span></code>是一一对应的，也就是说<code class="docutils literal notranslate"><span class="pre">LocSeq</span></code>具有什么样的属性，那么<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>就具有什么属性。我们可以通过下面的例子展示如何快速构建一个<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">LocSeqDataset</span>
+
+<span class="n">seq1</span> <span class="o">=</span> <span class="n">LocSeq</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
+<span class="n">seq2</span> <span class="o">=</span> <span class="n">LocSeq</span><span class="p">([</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">LocSeqDataset</span><span class="o">.</span><span class="n">init_from_loc_seqs</span><span class="p">([</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LocSeqDataset(size=2)
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以通过<code class="docutils literal notranslate"><span class="pre">to_polars</span></code>方法快速将其转换为<code class="docutils literal notranslate"><span class="pre">Polars</span> <span class="pre">DataFrame</span></code>进行其他操作。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_polars</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 6)</small><table border="1" class="dataframe"><thead><tr><th>seq</th><th>entity_id</th><th>ts_seq</th><th>ts_delta</th><th>dis_delta</th><th>start_ts</th></tr><tr><td>list[str]</td><td>str</td><td>list[i64]</td><td>list[f32]</td><td>list[f32]</td><td>i64</td></tr></thead><tbody><tr><td>[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>[&quot;C&quot;, &quot;D&quot;]</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="c1"># 计算一共有多少个不同的位置</span>
+<span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;seq&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>由于<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>的底层使用的是<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>类型的数据结构，因此也是可以直接从<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>层面进行操作的。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">seq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7f6ecc355cc0&gt;
+[
+  [
+    [
+      &quot;A&quot;,
+      &quot;B&quot;,
+      &quot;C&quot;
+    ],
+    [
+      &quot;C&quot;,
+      &quot;D&quot;
+    ]
+  ]
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="c1"># 计算每条序列的长度</span>
+<span class="n">pa</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">list_value_length</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以看一下<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>的schema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>seq: large_list&lt;item: large_string&gt;
+  child 0, item: large_string
+entity_id: large_string
+ts_seq: large_list&lt;item: int64&gt;
+  child 0, item: int64
+ts_delta: large_list&lt;item: float&gt;
+  child 0, item: float
+dis_delta: large_list&lt;item: float&gt;
+  child 0, item: float
+start_ts: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>对于索引操作，<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>在设计上是返回一个自身的一个视图，并不会copy一份新的数据出来。而且索引操作的返回结果仍然是一个<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>类型。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>为什么索引的返回结果仍然是<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>？</p>
+<p>因为<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>与<code class="docutils literal notranslate"><span class="pre">TrajectoryDataset</span></code>是构建在<code class="docutils literal notranslate"><span class="pre">pyArrow.Table</span></code>类型上的，<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>数据的列存性质使得<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>数据只有列的概念，没有行的概念，因此按行取数的过程实际是遍历所有的列，根据行的下标进行取数，这样得到的数据如果使用<code class="docutils literal notranslate"><span class="pre">tuple或者list</span></code>表示都不合理，但是是可以使用原来的schema将数据重新组织起来的，并且由于零拷贝的特性，这一点不会有什么损耗。</p>
+<p>这样的特性也同样适用于<code class="docutils literal notranslate"><span class="pre">TrajectoryDataset</span></code>，因为这个特性是抽象基类<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>提供的。</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(LocSeqDataset(size=1), LocSeqDataset(size=1))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span> <span class="n">ds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;pyarrow.lib.ChunkedArray object at 0x7f6ec7578ee0&gt;
+ [
+   [
+     [
+       &quot;A&quot;,
+       &quot;B&quot;,
+       &quot;C&quot;
+     ]
+   ]
+ ],
+ &lt;pyarrow.lib.ChunkedArray object at 0x7f6ec7578b80&gt;
+ [
+   [
+     [
+       &quot;C&quot;,
+       &quot;D&quot;
+     ]
+   ]
+ ])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="trajectorydataset">
+<h3>2.2.&nbsp;&nbsp;TrajectoryDataset<a class="headerlink" href="#trajectorydataset" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">TrajectoryDataset</span></code>和<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>基本是一样的，唯一的区别在于seq的类型，我们可以创建一个<code class="docutils literal notranslate"><span class="pre">TrajectoryDataset</span></code>试试。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">trajdl.datasets</span> <span class="kn">import</span> <span class="n">Trajectory</span><span class="p">,</span> <span class="n">TrajectoryDataset</span>
+
+<span class="n">traj1</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="n">traj2</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="n">traj3</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">TrajectoryDataset</span><span class="o">.</span><span class="n">init_from_trajectories</span><span class="p">([</span><span class="n">traj1</span><span class="p">,</span> <span class="n">traj2</span><span class="p">,</span> <span class="n">traj3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TrajectoryDataset(size=3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 看一下schema</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">schema</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>seq: large_list&lt;item: fixed_size_list&lt;item: double&gt;[2]&gt;
+  child 0, item: fixed_size_list&lt;item: double&gt;[2]
+      child 0, item: double
+entity_id: large_string
+ts_seq: large_list&lt;item: int64&gt;
+  child 0, item: int64
+ts_delta: large_list&lt;item: float&gt;
+  child 0, item: float
+dis_delta: large_list&lt;item: float&gt;
+  child 0, item: float
+start_ts: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看到，<code class="docutils literal notranslate"><span class="pre">seq</span></code>的类型与<code class="docutils literal notranslate"><span class="pre">LocSeqDataset</span></code>的<code class="docutils literal notranslate"><span class="pre">seq</span></code>的类型是不同的。</p>
+<p>下面是这两种类型的Schema的对比：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>LocSeqDataset</th>
+<th>TrajectoryDataset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seq</code></td>
+<td><code>pa.large_list(pa.large_string())</code></td>
+<td><code>pa.large_list(pa.list_(pa.float64(), 2))</code></td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>pa.large_string()</code></td>
+<td><code>pa.large_string()</code></td>
+</tr>
+<tr>
+<td><code>ts_seq</code></td>
+<td><code>pa.large_list(pa.int64())</code></td>
+<td><code>pa.large_list(pa.int64())</code></td>
+</tr>
+<tr>
+<td><code>ts_delta</code></td>
+<td><code>pa.large_list(pa.float32())</code></td>
+<td><code>pa.large_list(pa.float32())</code></td>
+</tr>
+<tr>
+<td><code>dis_delta</code></td>
+<td><code>pa.large_list(pa.float32())</code></td>
+<td><code>pa.large_list(pa.float32())</code></td>
+</tr>
+<tr>
+<td><code>start_ts</code></td>
+<td><code>pa.int64()</code></td>
+<td><code>pa.int64()</code></td>
+</tr>
+</tbody>
+</table>
+<p>只有<code class="docutils literal notranslate"><span class="pre">seq</span></code>字段的类型是不同的。</p>
+</section>
+<section id="id1">
+<h3>2.3.&nbsp;&nbsp;数据集的持久化<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>是支持<strong>存储</strong>与<strong>加载</strong>的，通过<code class="docutils literal notranslate"><span class="pre">save</span></code>方法和<code class="docutils literal notranslate"><span class="pre">init_from_parquet</span></code>方法。</p>
+<p>调用<code class="docutils literal notranslate"><span class="pre">save</span></code>方法后数据集会以<code class="docutils literal notranslate"><span class="pre">parquet</span></code>的格式存储到磁盘上。</p>
+<p>调用<code class="docutils literal notranslate"><span class="pre">init_from_parquet</span></code>之后，数据集会从<code class="docutils literal notranslate"><span class="pre">parquet</span></code>文件重新加载。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">LocSeqDataset</span><span class="o">.</span><span class="n">save</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function save in module trajdl.datasets.arrow.abstract:
+
+save(self, path: Union[str, pathlib.Path]) -&gt; None
+    Save the dataset to a Parquet file.
+
+    Parameters
+    ----------
+    path : Union[str, Path]
+        The file path to save the dataset.
+
+    Notes
+    -----
+    If the provided path does not end with &#39;.parquet&#39;, it will be appended automatically.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">LocSeqDataset</span><span class="o">.</span><span class="n">init_from_parquet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method init_from_parquet in module trajdl.datasets.arrow.abstract:
+
+init_from_parquet(path: str) -&gt; &#39;BaseArrowDataset&#39; class method of trajdl.datasets.arrow.locseq.LocSeqDataset
+    Initialize the dataset from a Parquet file.
+
+    Parameters
+    ----------
+    path : str
+        The file path to the Parquet file.
+
+    Returns
+    -------
+    BaseArrowDataset
+        An instance of the dataset initialized from the Parquet file.
+
+    Notes
+    -----
+    Due to differences in handling List[List[Float32]] across different frameworks,
+    it is recommended to read the file using PyArrow and try to convert types where necessary.
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们演示一下如何实现数据的存储与加载：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmp_folder</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmp_folder</span><span class="p">,</span> <span class="s2">&quot;test_ds.parquet&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dataset will be saved as:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">TrajectoryDataset</span><span class="o">.</span><span class="n">init_from_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">new_ds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dataset will be saved as: /tmp/tmp4o842h4y/test_ds.parquet
+TrajectoryDataset(size=3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>再数据集处理好后，使用<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>存储起来对后续的训练过程很有帮助，如何在训练的时候使用<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>需要看后续文档。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>本文主要介绍<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>里面的<strong>序列</strong>与<strong>数据集</strong>的概念。前者用于表示单条序列，后者用于表示多条序列。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>内的大量操作会围绕这些序列和数据集展开，如轨迹切分、数据扰动，Tokenization等。</p>
+<p><strong>数据集</strong>在<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>的模型训练中发挥很大的作用。</p>
+<p>基于<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>的<code class="docutils literal notranslate"><span class="pre">BaseArrowDataset</span></code>还有很多用法会在后续的<strong>高级文档</strong>内展开。</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="open_source_dataset.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Open Source Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence">Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locseqdataset">LocSeqDataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectorydataset">TrajectoryDataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">数据集的持久化</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

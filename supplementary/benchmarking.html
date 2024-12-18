@@ -1,0 +1,1166 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Benchmarking &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'supplementary/benchmarking';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scientific Articles" href="references.html" />
+    <link rel="prev" title="STLSTM" href="../examples/stlstm_example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data/index.html">Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data/sequence_and_dataset.html">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data/open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../training/index.html">Training</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/collate_function.html">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../available_algorithms/index.html">Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/tuler.html">TULER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/t2vec.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/gmvsae.html">GM-VSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../available_algorithms/stlstm.html">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/supplementary/benchmarking.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Benchmarking</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuler">TULER</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-tips">Some tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t2vec">T2VEC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Some tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmvsae">GMVSAE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hier">HIER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctle">CTLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strnn">STRNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Configuration</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="benchmarking">
+<h1>Benchmarking<a class="headerlink" href="#benchmarking" title="Link to this heading">#</a></h1>
+<section id="tuler">
+<h2>1.&nbsp;&nbsp;TULER<a class="headerlink" href="#tuler" title="Link to this heading">#</a></h2>
+<section id="configuration">
+<h3>1.1.&nbsp;&nbsp;Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
+<p>Running on 8 vCPU, 32 GB memory, 1 x V100-16 GB</p>
+<p>Hyperparameters configuration: Same as the code released by the authors, 1-layer GRU
+The original code is built on TensorFlow 1.x</p>
+<p>Steps of preprocessing dataset in original code:</p>
+<ol class="arabic simple">
+<li><p>Train Word2Vec</p></li>
+</ol>
+<p>Steps of preprocessing dataset in TrajDL:</p>
+<ol class="arabic simple">
+<li><p>Train tokenizer</p></li>
+<li><p>Train Word2Vec</p></li>
+</ol>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preprocessing dataset time</td>
+<td>270s</td>
+<td>367s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>100%</td>
+<td>58.40%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>4.70%</td>
+<td>2.97%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training time</td>
+<td>2520s</td>
+<td>701s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>27.10%</td>
+<td>31.00%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>6.35%</td>
+<td>15.20%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>34.00%</td>
+<td>7.00%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>95.40%</td>
+<td>3.16%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acc1</td>
+<td>27.68%</td>
+<td>47.85%</td>
+</tr>
+<tr>
+<td>Acc5</td>
+<td>43.40%</td>
+<td>64.91%</td>
+</tr>
+<tr>
+<td>Macro-F1</td>
+<td>23.39%</td>
+<td>36.75%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="some-tips">
+<h3>1.2.&nbsp;&nbsp;Some tips<a class="headerlink" href="#some-tips" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The original code uses <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> to train Word2Vec models, while TrajDL uses Gensim. <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> tool is more efficient than Gensim.</p></li>
+<li><p>When attempting to use Word2Vec to iterate 100 epochs in the original code and then train the TULER_GRU_1 model, the evaluation results were worse than those from TrajDL and the results published in the paper. 原因是：
+作者的代码是在一个采样后的数据集，大约161万条序列里面抽取2万条做实验，2万条序列按用户分组，每个用户的前90%做训练集，后10%做测试集。然而使用的word2vec模型是在161万条序列上训练的，并不是2万里面的训练集，也不是2万的训练+测试集。TrajDL在161万条数据上训练的word2vec，效果可以达到一个非常好的效果，超越论文效果。</p></li>
+</ul>
+</section>
+</section>
+<section id="t2vec">
+<h2>2.&nbsp;&nbsp;T2VEC<a class="headerlink" href="#t2vec" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>2.1.&nbsp;&nbsp;Configuration<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Running on 8 vCPU, 32 GB memory, 1 x V100-16 GB</p>
+<p>Hyperparameters configuration: Same as the code released by the authors</p>
+<p>Steps of preprocessing dataset in original code:</p>
+<ol class="arabic simple">
+<li><p>Transform CSV dataset into H5</p></li>
+<li><p>Generate Train, Val, Test dataset</p></li>
+</ol>
+<p>Steps of preprocessing dataset in TrajDL:</p>
+<ol class="arabic simple">
+<li><p>Download Porto Taxi dataset (this test did not use cache)</p></li>
+<li><p>Build tokenizers</p></li>
+<li><p>Generate Train, Val, Test dataset</p></li>
+<li><p>Train Word2Vec model</p></li>
+</ol>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preprocessing dataset time</td>
+<td>4683s</td>
+<td>325s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>25.10%</td>
+<td>100.00%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>14.30%</td>
+<td>63.8%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training time</td>
+<td>17040s</td>
+<td>69161s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>12.50%</td>
+<td>28.80%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>41.40%</td>
+<td>56.40%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>44.00%</td>
+<td>68.00%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>39.30%</td>
+<td>94.90%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB size 20k</td>
+<td>2.437</td>
+<td>0.845</td>
+</tr>
+<tr>
+<td>DB size 40k</td>
+<td>3.669</td>
+<td>1.556</td>
+</tr>
+<tr>
+<td>DB size 60k</td>
+<td>5.030</td>
+<td>2.255</td>
+</tr>
+<tr>
+<td>DB size 80k</td>
+<td>6.725</td>
+<td>3.215</td>
+</tr>
+<tr>
+<td>DB size 100k</td>
+<td>8.153</td>
+<td>4.068</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r1 0.2</td>
+<td>8.945</td>
+<td>4.320±0.242</td>
+</tr>
+<tr>
+<td>r1 0.3</td>
+<td>8.859</td>
+<td>4.766±0.236</td>
+</tr>
+<tr>
+<td>r1 0.4</td>
+<td>10.199</td>
+<td>5.783±0.470</td>
+</tr>
+<tr>
+<td>r1 0.5</td>
+<td>12.226</td>
+<td>7.657±0.590</td>
+</tr>
+<tr>
+<td>r1 0.6</td>
+<td>29.227</td>
+<td>20.106±24.710</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r2 0.2</td>
+<td>8.703</td>
+<td>4.673±0.720</td>
+</tr>
+<tr>
+<td>r2 0.3</td>
+<td>8.769</td>
+<td>4.739±0.360</td>
+</tr>
+<tr>
+<td>r2 0.4</td>
+<td>7.836</td>
+<td>4.559±0.777</td>
+</tr>
+<tr>
+<td>r2 0.5</td>
+<td>9.000</td>
+<td>4.818±0.552</td>
+</tr>
+<tr>
+<td>r2 0.6</td>
+<td>6.799</td>
+<td>4.871±0.551</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h3>2.2.&nbsp;&nbsp;Some tips<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In the paper, experiments 2 and 3 introduced downsampling and distortion, which are operations with randomness. Therefore, when evaluating these two experiments, multiple trials should be conducted, and the mean and standard deviation should be recorded. In Experiment 2, we found that when setting r to 0.6, the evaluation results were unstable, which is similar to the surge phenomenon mentioned in the paper.</p></li>
+</ul>
+</section>
+</section>
+<section id="gmvsae">
+<h2>3.&nbsp;&nbsp;GMVSAE<a class="headerlink" href="#gmvsae" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>3.1.&nbsp;&nbsp;Configuration<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>GM-VSAE10, Detecting detour anomalies (D), d = 3, <span class="math notranslate nohighlight">\(\alpha = 0.3\)</span></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preprocessing dataset time</td>
+<td>692s</td>
+<td>290s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>12.50%</td>
+<td>43.70%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>18.10%</td>
+<td>64.00%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-training time</td>
+<td>1525s</td>
+<td>638s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>32.10%</td>
+<td>82.00%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>3.51%</td>
+<td>17.80%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>37.00%</td>
+<td>26.00%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>5.82%</td>
+<td>10.80%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training time</td>
+<td>547s</td>
+<td>663s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>33.10%</td>
+<td>50.90%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>3.36%</td>
+<td>21.10%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>37.00%</td>
+<td>26.00%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>3.45%</td>
+<td>10.80%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUC of Detour</td>
+<td>0.9819</td>
+<td>0.9987</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="hier">
+<h2>4.&nbsp;&nbsp;HIER<a class="headerlink" href="#hier" title="Link to this heading">#</a></h2>
+</section>
+<section id="ctle">
+<h2>5.&nbsp;&nbsp;CTLE<a class="headerlink" href="#ctle" title="Link to this heading">#</a></h2>
+</section>
+<section id="strnn">
+<h2>6.&nbsp;&nbsp;STRNN<a class="headerlink" href="#strnn" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>6.1.&nbsp;&nbsp;Configuration<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Running on 8 vCPU, 32 GB memory, 1 x V100-16 GB</p>
+<p>Hyperparameters configuration: Same as the code released by the authors.
+The original code is built on PyTorch 0.4.0</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preprocessing dataset time</td>
+<td>1485s</td>
+<td></td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>12.50%</td>
+<td></td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>7.51%</td>
+<td></td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>9.00%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>6.48%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training time</td>
+<td>2520s</td>
+<td>701s</td>
+</tr>
+<tr>
+<td>Max CPU usage</td>
+<td>27.10%</td>
+<td>31.00%</td>
+</tr>
+<tr>
+<td>Max memory usage</td>
+<td>6.35%</td>
+<td>15.20%</td>
+</tr>
+<tr>
+<td>Max GPU utility</td>
+<td>34%</td>
+<td>7%</td>
+</tr>
+<tr>
+<td>Max GPU memory</td>
+<td>95.40%</td>
+<td>3.16%</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Code</th>
+<th>Original</th>
+<th>TrajDL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acc1</td>
+<td>27.68%</td>
+<td>44.79%</td>
+</tr>
+<tr>
+<td>Acc5</td>
+<td>43.40%</td>
+<td>64.53%</td>
+</tr>
+<tr>
+<td>Macro-F1</td>
+<td>23.39%</td>
+<td>31.42%</td>
+</tr>
+</tbody>
+</table></section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../examples/stlstm_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">STLSTM</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="references.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Scientific Articles</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuler">TULER</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-tips">Some tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t2vec">T2VEC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Some tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmvsae">GMVSAE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hier">HIER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctle">CTLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strnn">STRNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Configuration</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

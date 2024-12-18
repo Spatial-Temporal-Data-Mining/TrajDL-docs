@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GM-VSAE &#8212; trajdl 0.1.0.dev1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=cbb9c4f9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'available_algorithms/gmvsae';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HST-LSTM" href="stlstm.html" />
+    <link rel="prev" title="T2VEC" href="t2vec.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">trajdl 0.1.0.dev1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Quick Start</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📚 Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data/index.html">Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data/sequence_and_dataset.html">Sequence and Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data/open_source_dataset.html">Open Source Datasets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/grid.html">Grid System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tokenizer.html">Tokenizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../training/index.html">Training</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/collate_function.html">Collate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_data_module.html">Lightning DataModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/lightning_cli.html">LightningCLI</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/arrow.html">BaseArrowDataSet</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📜 Algorithms</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Algorithms</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tuler.html">TULER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="t2vec.html">T2VEC</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">GM-VSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlstm.html">HST-LSTM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Hands-on Example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/t2vec_example.html">T2VEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/gmvsae_example.html">GMVSAE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/stlstm_example.html">STLSTM</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📔 Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplementary/references.html">Scientific Articles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📏 API Docs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/trajdl/trajdl.html">TrajDL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.html">trajdl.algorithms package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.html">trajdl.algorithms.embeddings package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.base.html">trajdl.algorithms.embeddings.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.embeddings.ctle.html">trajdl.algorithms.embeddings.ctle module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.framework.html">trajdl.algorithms.framework package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.html">trajdl.algorithms.loc_pred package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.rnn.html">trajdl.algorithms.loc_pred.rnn module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.loc_pred.stlstm.html">trajdl.algorithms.loc_pred.stlstm module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.abstract.html">trajdl.algorithms.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.ctle.html">trajdl.algorithms.ctle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.gmvsae.html">trajdl.algorithms.gmvsae module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.hier.html">trajdl.algorithms.hier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.t2vec.html">trajdl.algorithms.t2vec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.algorithms.tuler.html">trajdl.algorithms.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.common.html">trajdl.common package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.enum.html">trajdl.common.enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.common.samples.html">trajdl.common.samples module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.html">trajdl.datasets package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.html">trajdl.datasets.arrow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.ext.html">trajdl.datasets.arrow.ext package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.abstract.html">trajdl.datasets.arrow.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.locseq.html">trajdl.datasets.arrow.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.schema.html">trajdl.datasets.arrow.schema module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.arrow.traj.html">trajdl.datasets.arrow.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.html">trajdl.datasets.base package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.abstract.html">trajdl.datasets.base.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.locseq.html">trajdl.datasets.base.locseq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.base.traj.html">trajdl.datasets.base.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.html">trajdl.datasets.modules package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.abstract.html">trajdl.datasets.modules.abstract module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.ctle.html">trajdl.datasets.modules.ctle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.gmvsae.html">trajdl.datasets.modules.gmvsae module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.hier.html">trajdl.datasets.modules.hier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.stlstm.html">trajdl.datasets.modules.stlstm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.t2vec.html">trajdl.datasets.modules.t2vec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.modules.tuler.html">trajdl.datasets.modules.tuler module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.html">trajdl.datasets.open_source package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.conf.html">trajdl.datasets.open_source.conf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.hasher.html">trajdl.datasets.open_source.hasher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.open_source.utils.html">trajdl.datasets.open_source.utils module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.html">trajdl.datasets.sampler package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.bucket.html">trajdl.datasets.sampler.bucket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.session.html">trajdl.datasets.sampler.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/trajdl/trajdl.datasets.sampler.t2vec.html">trajdl.datasets.sampler.t2vec module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.grid.html">trajdl.grid package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.base.html">trajdl.grid.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.grid.hierarchy.html">trajdl.grid.hierarchy module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.loss.html">trajdl.loss package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.loss.sampled_softmax.html">trajdl.loss.sampled_softmax module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.metrics.html">trajdl.metrics package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.acc.html">trajdl.metrics.acc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.metrics.tul.html">trajdl.metrics.tul module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.html">trajdl.tokenizers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.slot.html">trajdl.tokenizers.slot package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.abstract.html">trajdl.tokenizers.abstract module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.locseq.html">trajdl.tokenizers.locseq module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.simple.html">trajdl.tokenizers.simple module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.tokenizers.t2vec.html">trajdl.tokenizers.t2vec module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/trajdl/trajdl.utils.html">trajdl.utils package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/trajdl/trajdl.utils.traj.html">trajdl.utils.traj module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/trajdl/trajdl.config.html">trajdl.config module</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/available_algorithms/gmvsae.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>GM-VSAE</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">GM-VSAE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">方法建模</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">嵌入表征层</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">编码器</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">隐藏状态空间</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">解码器</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">目标函数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">在线轨迹序列异常检测</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">代码示例</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gm-vsae">
+<h1>GM-VSAE<a class="headerlink" href="#gm-vsae" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://kaiqizhao.github.io/ICDE20_CR.pdf">[ICDE2020] Online anomalous trajectory detection with deep generative sequence modeling</a></p>
+<section id="id1">
+<h2>1.&nbsp;&nbsp;摘要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>轨迹序列异常检测</strong>是轨迹序列领域中的重要任务之一，在诸多方面都有应用的场景。比如在城市中从<span class="math notranslate nohighlight">\(A\)</span>地点打车到<span class="math notranslate nohighlight">\(B\)</span>地点，一般而言有几条被大量司机驶行的固定路径，如果某用户打车时司机的轨迹并非与这些固定路径相似，那么极有可能是被绕路了，也即轨迹序列异常。</p>
+<p>在此，作者提出一种轨迹序列异常计算算法——<strong>GM-VSAE</strong>（Gaussian Mixture Variational Sequence AutoEncoder），相比于前人的方法，作者认为GM-VSAE存在以下优点:</p>
+<ul class="simple">
+<li><p>能够捕获复杂轨迹序列的表征。</p></li>
+<li><p>在隐藏状态空间中使用高斯混合分布表征不同类型的路径。</p></li>
+<li><p>基于轨迹生成的在线检测（detection-via-generation）。</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>2.&nbsp;&nbsp;预备知识<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>轨迹序列定义为按时间顺序采集的GPS坐标点序列 <span class="math notranslate nohighlight">\(P=\{p_1 \to p_2 \to \ldots \to p_n\}\)</span>。路径表示轨迹序列在物理世界中所遵循的连续路线，一条轨迹序列可以被视为路径的一条采样样本。</p>
+<p>通常，在某个<strong>固定行程</strong>（即某两位置之间的行程）中的一条<em>轨迹</em>（trajectory），如果没有遵循<em>正常路径</em>（normal route）的话，则可以被认为是<strong>异常轨迹</strong>。注意，在某固定形成之间亦可以存在多条正常路径。下图中 <span class="math notranslate nohighlight">\({S_1, S_2}\)</span>表示行程的起点， <span class="math notranslate nohighlight">\({D_1, D_2}\)</span>表示行程的终点，其中 <span class="math notranslate nohighlight">\({T_1, T_2}\)</span> 两条轨迹序列被视为是<em>异常轨迹</em>（anomalous trajectory）。</p>
+<figure class="align-center" id="anomaly-trajectory">
+<a class="reference internal image-reference" href="../_images/gmvsae_detour_example.jpg"><img alt="异常轨迹示例" src="../_images/gmvsae_detour_example.jpg" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图1. 异常轨迹示例（图源：<a class="reference external" href="https://kaiqizhao.github.io/ICDE20_CR.pdf">GM-VSAE</a>）</span><a class="headerlink" href="#anomaly-trajectory" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id3">
+<h2>3.&nbsp;&nbsp;GM-VSAE<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>3.1.&nbsp;&nbsp;定义<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>为了后续的GM-VSAE的建模，作者在此作如下定义：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r\)</span>：路径，定义<span class="math notranslate nohighlight">\(p(r)\)</span>为一条路径被轨迹行驶的概率。更大的<span class="math notranslate nohighlight">\(p(r)\)</span>意味着<span class="math notranslate nohighlight">\(r\)</span>更有可能是一条正常路径。</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_*\)</span>：正常路径，定义<span class="math notranslate nohighlight">\(p(T|r_*)\)</span>表示轨迹<span class="math notranslate nohighlight">\(T\)</span>由正常路径<span class="math notranslate nohighlight">\(r_*\)</span>生成的概率。更小的<span class="math notranslate nohighlight">\(p(T|r_*)\)</span>意味着<span class="math notranslate nohighlight">\(T\)</span>更有可能是一条异常轨迹。</p></li>
+<li><p><strong>在线异常序列检测</strong>：给定一条序列 <span class="math notranslate nohighlight">\(T\)</span> ，其起点是 <span class="math notranslate nohighlight">\(S_T\)</span>，终点是 <span class="math notranslate nohighlight">\(D_T\)</span> ，在线异常序列检测任务是：（1）挖掘 <span class="math notranslate nohighlight">\(S_T\)</span>和<span class="math notranslate nohighlight">\(D_T\)</span>之间的正常路径；（2）计算当前轨迹由正常路径生成的概率<span class="math notranslate nohighlight">\(p(T|r_*)\)</span>，通过该值来在线判定是否是异常轨迹。</p></li>
+</ul>
+<p>为了实现上文中的两个目的，受<a class="reference external" href="https://arxiv.org/pdf/1312.6114">VAE</a>启发，作者提出了<strong>GM-VSAE</strong>算法，即高斯混合变分序列自编码器，该算法可以实现如下三个功能：</p>
+<ul class="simple">
+<li><p>以向量来表征路径在隐空间中的分布。</p></li>
+<li><p>建模路径的分布 <span class="math notranslate nohighlight">\(p(r)\)</span>。</p></li>
+<li><p>给定路径，生成该路径下的一条轨迹序列（采样<span class="math notranslate nohighlight">\(p(T|r)\)</span>）。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>3.2.&nbsp;&nbsp;方法建模<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>GM-VASE原理架构图如下:</p>
+<figure class="align-center" id="gm-vsae-arch">
+<a class="reference internal image-reference" href="../_images/gmvsae_architecture.jpg"><img alt="GM-VSAE整体架构" src="../_images/gmvsae_architecture.jpg" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">图2. GM-VSAE整体架构（图源：<a class="reference external" href="https://kaiqizhao.github.io/ICDE20_CR.pdf">GM-VSAE</a>）</span><a class="headerlink" href="#gm-vsae-arch" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="id6">
+<h4>嵌入表征层<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>原始的轨迹序列无法直接作为模型的输入，需要先对地图构建网格系统将轨迹转换为离散的词元序列，然后可使用词嵌入模型来构建嵌入表征层，将词元序列中的每一个词元转换为<em>嵌入向量</em>（embedding）作为GM-VSAE后续模块的输入。具体细节可以参见<a class="reference external" href="https://arxiv.org/pdf/1301.3781">Word2Vec</a>，此处不做赘述。</p>
+</section>
+<section id="id7">
+<h4>编码器<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p><a class="reference internal" href="#gm-vsae-arch">图2</a>中Inference Network即为编码器，定义为<span class="math notranslate nohighlight">\(q_\phi(r \vert T)\)</span>，即在给定轨迹序列<span class="math notranslate nohighlight">\(T=(t_1, t_2, \ldots, t_n)\)</span>的情况下，计算其在隐空间中的向量表示<span class="math notranslate nohighlight">\(r_T \in \mathbb{R}^M\)</span>。</p>
+<p>在GM-VSAE中编码器使用的是RNN系列的模型。具体地，在第 <span class="math notranslate nohighlight">\(i\)</span> 步时，编码器输出隐藏状态（hidden state）：</p>
+<div class="math notranslate nohighlight" id="equation-encoder-hidden-state">
+<span class="eqno">(1)<a class="headerlink" href="#equation-encoder-hidden-state" title="Link to this equation">#</a></span>\[
+h_i = f_1(t_i, h_{i-1}) \quad  i=1,2,3,\ldots,n,
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(h_i \in \mathbb{R}^K\)</span>，<span class="math notranslate nohighlight">\(K\)</span>即为隐藏层的维度。</p>
+<p>参照<a class="reference external" href="https://arxiv.org/pdf/1312.6114">VAE</a>中对隐藏状态的建模，GM-VSAE将<span class="math notranslate nohighlight">\(q_\phi(r \vert T)\)</span>建模为高斯分布，如下：</p>
+<div class="math notranslate nohighlight" id="equation-gaussian-post-prob">
+<span class="eqno">(2)<a class="headerlink" href="#equation-gaussian-post-prob" title="Link to this equation">#</a></span>\[
+r_T \sim q_\phi(r \vert T)=\mathcal{N}(\mathbf{\mu_T}, \mathbf{\sigma}_T^2\mathbf{I})
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\mu_T \in \mathbb{R}^M\)</span>，<span class="math notranslate nohighlight">\(\sigma_T \in \mathbb{R}^M\)</span>，<span class="math notranslate nohighlight">\({\mu_T, \sigma_T}=g_1(\mathbf{h}_n)\)</span>，<span class="math notranslate nohighlight">\(g_1\)</span>即为编码器的模型部分。</p>
+<p>所以，我们将轨迹序列<span class="math notranslate nohighlight">\(T\)</span>作为编码器的输入，此时编码器的<span class="math notranslate nohighlight">\(g_1\)</span>输出的均值<span class="math notranslate nohighlight">\(\mu_T\)</span>和标准差<span class="math notranslate nohighlight">\(\sigma_T\)</span>即为轨迹<span class="math notranslate nohighlight">\(T\)</span>在隐藏状态空间中的向量表征。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol class="arabic simple">
+<li><p>此处编码器的建模和下文隐藏状态空间的建模，其基本原理在<a class="reference external" href="https://arxiv.org/pdf/1312.6114">Auto-Encoding Variational Bayes</a>一文中有更为详细的讲解。</p></li>
+<li><p>在<a class="reference internal" href="t2vec.html"><span class="std std-doc">T2VEC</span></a>中亦有针对轨迹领域的建模方式讲解。</p></li>
+</ol>
+</div>
+</section>
+<section id="id8">
+<h4>隐藏状态空间<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>通过编码器可以得到轨迹<span class="math notranslate nohighlight">\(T\)</span>在隐空间中的向量表示，但是我们依旧无法区分在隐藏状态空间中哪些路径是正常的。因此，作者使用高斯混合分布来对隐藏路径进行建模。</p>
+<p>作者假设在隐藏状态空间中存在<span class="math notranslate nohighlight">\(C\)</span>中不同类型的路径<span class="math notranslate nohighlight">\({r}\)</span>分布，其中不同类型的路径在物理世界中有不同的含义，比如道路类型、旅行区域等等。为了建模不同类型的隐藏路径分布，作者定义了如下两个概率分布：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p_\gamma(c)=Mult(\pi)\)</span>，其中<span class="math notranslate nohighlight">\(\pi \in \mathbb{R}^C\)</span>。<span class="math notranslate nohighlight">\(p_\gamma(c)\)</span>即为不同类型的隐藏路径在隐藏状态空间中的概率分布。</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_\gamma(\mathbf{r}|c) = \mathcal{N}(\mu_c, \sigma_c^2\mathbf{I})\)</span> ，其中<span class="math notranslate nohighlight">\(\mu_c \in \mathbb{R}^M\)</span>，<span class="math notranslate nohighlight">\(\sigma_c \in \mathbb{R}^M\)</span>分别表示该高斯分布的均值和标准差。<span class="math notranslate nohighlight">\(p_\gamma(\mathbf{r}|c)\)</span>用以建模在路径类型<span class="math notranslate nohighlight">\(c\)</span>中路径下<span class="math notranslate nohighlight">\(\mathbb{r}\)</span>出现的概率。</p></li>
+</ul>
+<p>可见，上述两个概率分布共同来对隐藏状态空间建模，即<span class="math notranslate nohighlight">\(p_\gamma(\mathbf{r},c)=p_\gamma(\mathbf{r} \vert c)p_\gamma(\mathbf{c})\)</span>，隐藏状态空间模型的参数是<span class="math notranslate nohighlight">\(\gamma=\{\mathbf{\pi}, \mathbf{\mu_c}, \mathbf{\sigma_c}\}\)</span>。</p>
+<p>由于新增了隐藏路径类型<span class="math notranslate nohighlight">\(c\)</span>这个变量，所以可以将编码器推理路径<span class="math notranslate nohighlight">\(\mathbf{r}\)</span>扩展为推理路径<span class="math notranslate nohighlight">\(\mathbf{r}\)</span>和路径类型<span class="math notranslate nohighlight">\(c\)</span>，即<span class="math notranslate nohighlight">\(q_\phi(\mathbf{r}, c|T)\)</span>。借助<em>平均场近似</em>（Mean-field approximation），我们可以将其分解为如下：</p>
+<div class="math notranslate nohighlight" id="equation-mean-field-decomp">
+<span class="eqno">(3)<a class="headerlink" href="#equation-mean-field-decomp" title="Link to this equation">#</a></span>\[
+q_\phi(\mathbf{r}, c|T) = q_\phi(\mathbf{r}|T)q_\phi(c|T)
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(q_\phi(c|T)\)</span>可以近似为如下：</p>
+<div class="math notranslate nohighlight" id="equation-post-sim-1">
+<span class="eqno">(4)<a class="headerlink" href="#equation-post-sim-1" title="Link to this equation">#</a></span>\[
+q_\phi(c|T):=p_\gamma(c|\mathbf{r}_T)=\frac{p_\gamma(c)p_\gamma(\mathbf{r}_T|c)}{\sum_{i=1}^Cp_\gamma(c_i)p_\gamma(\mathbf{r}_T|c_i)}
+\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(r_T\)</span>采样于分布<span class="math notranslate nohighlight">\(q_\phi(\mathbf{r}|T)\)</span>。</p>
+</section>
+<section id="id9">
+<h4>解码器<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>解码器的任务是根轨迹序列<span class="math notranslate nohighlight">\(T\)</span>在潜在空间中的向量表示，来逐步生成轨迹<span class="math notranslate nohighlight">\(T'\)</span>。为此，作者进行了如下建模，对于第<span class="math notranslate nohighlight">\(i\)</span>步的序列点<span class="math notranslate nohighlight">\(t_i\)</span>的生成，其与下面两个因素相关:</p>
+<ul class="simple">
+<li><p>隐藏路径<span class="math notranslate nohighlight">\(\mathbf{r}\)</span></p></li>
+<li><p>先前的序列<span class="math notranslate nohighlight">\(t_{&lt;i}=t_1 \to t_2 \to \ldots \to t_{i-1}\)</span></p></li>
+</ul>
+<p>所以我们有：</p>
+<div class="math notranslate nohighlight" id="equation-decoder-model">
+<span class="eqno">(5)<a class="headerlink" href="#equation-decoder-model" title="Link to this equation">#</a></span>\[
+t_i \sim p_\theta(t_i|t_{&lt;i}, r)
+\]</div>
+<p>在解码器逐步解码的范式下，将先前的序列<span class="math notranslate nohighlight">\(t_{&lt;i}\)</span>和隐藏路径<span class="math notranslate nohighlight">\(\mathbf{r}\)</span>编码成隐藏状态向量（hidden state vector）：</p>
+<div class="math notranslate nohighlight" id="equation-decode-g">
+<span class="eqno">(6)<a class="headerlink" href="#equation-decode-g" title="Link to this equation">#</a></span>\[
+\mathbf{g}_i=f_2(t_i, \mathbf{g}_{i-1}) \quad i=1,2,\ldots,n \quad \mathbf{g}_0 = r
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(g_i \in \mathbb{R}^k\)</span>，<span class="math notranslate nohighlight">\(f_2\)</span>即为编码器的模型部分，在GM-VSAE中为RNN系列的模型。上述的公式可以进一步写成如下：</p>
+<div class="math notranslate nohighlight" id="equation-decoder-t">
+<span class="eqno">(7)<a class="headerlink" href="#equation-decoder-t" title="Link to this equation">#</a></span>\[
+t_i \sim p_\theta(t_i|t_{&lt;i}, r)=p_\theta(t|g_{i-1})=Mult(\mathrm{softmax}(g_2(\mathbf{g}_{i-1})))
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>多项式分布(Multinomial distribution)用于描述一次实验中从多个类别中选择的情况。在每个类别上都有相应的概率。具体来说，如果你有<span class="math notranslate nohighlight">\(K\)</span>个类别，每个类别<span class="math notranslate nohighlight">\(i\)</span>的选择的概率为<span class="math notranslate nohighlight">\(p_i\)</span>，且满足<span class="math notranslate nohighlight">\(\sum_{i=1}^Kp_i=1\)</span>，那么从这些类别中采样就是在多项式分布的框架下进行的。</p>
+</div>
+</section>
+</section>
+<section id="id10">
+<h3>3.3.&nbsp;&nbsp;目标函数<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>在GM-VSAE中，有如下参数需要优化，分别是嵌入表征层，编码器<span class="math notranslate nohighlight">\(\phi=\{f_1(\cdot),g_1(\cdot)\}\)</span>，潜在路径模型<span class="math notranslate nohighlight">\(\gamma=\{\mathbf{\pi},\mathbf{\mu}_c,\mathbf{\sigma}_c\}\)</span>以及解码器<span class="math notranslate nohighlight">\(\theta=\{f_2(\cdot),g_2(\cdot)\}\)</span>。</p>
+<p>参照<a class="reference external" href="https://arxiv.org/pdf/1312.6114">VAE</a>，在GM-VSAE中目标函数是轨迹序列的最大似然函数：</p>
+<div class="math notranslate nohighlight" id="equation-max-log-likelihood">
+<span class="eqno">(8)<a class="headerlink" href="#equation-max-log-likelihood" title="Link to this equation">#</a></span>\[
+\log p_\theta(T^{(1)}, T^{(2)}, \ldots,T^{(N)})=\sum_{j=1}^N\mathrm{log}p_\theta(T^{(j)})
+\]</div>
+<p>在这里定义<em>边际似然下界</em>（ELBO）为<span class="math notranslate nohighlight">\(\mathcal{L}(\theta,\gamma,\phi;T)\)</span>，根据VAE中相关的公式的推导，我们可以得到如下公式:</p>
+<div class="math notranslate nohighlight" id="equation-elbo">
+<span class="eqno">(9)<a class="headerlink" href="#equation-elbo" title="Link to this equation">#</a></span>\[\begin{split}
+\log p_\theta(T^{(1)}, T^{(2)}, \ldots, T^{(N)}) &amp; = \mathbb{E}_{q_\phi}(\mathbf{r}, c | T) \left[ \log \frac{p_\theta \text{,} \gamma(T, r, c)}{q_\phi(r, c | T)} \right] \\
+    &amp; = \mathbb{E}_{{q_\phi}(\mathbf{r}|T)}\left[\log p_\theta(T|\mathbf{r})\right] - \mathbb{E}_{{q_\phi}(\mathbf{r}|T)}\left[D_{KL}(q_\phi(c|T) \Vert p_\gamma(c)\right] \\
+    &amp; \quad - \mathbb{E}_{q_\phi(c|T)}\left[D_{KL}(q_\phi(\mathbf{r}|T) \Vert p_\gamma(\mathbf{r}|c))\right]
+\end{split}\]</div>
+<p>等式右边第一项表示重构损失，它衡量模型在重构数据的准确性。第二项对应于均匀先验损失，它鼓励混合分布中所有成分的均衡贡献。第三项则是高斯损失，它评估潜在变量与模型中假设的高斯分布之间的吻合程度。</p>
+<p>首先<span class="math notranslate nohighlight">\(D_{KL}(q_\phi(\mathbf{r}|T) \Vert p_\gamma(\mathbf{r}|c))\)</span>衡量两个高斯分布之间的Kullback-Leibler散度，可以表示如下</p>
+<div class="math notranslate nohighlight" id="equation-kl-div">
+<span class="eqno">(10)<a class="headerlink" href="#equation-kl-div" title="Link to this equation">#</a></span>\[
+D_{KL}(q_\phi(\mathbf{r}|T) \Vert p_\gamma(\mathbf{r}|c)) = \frac{1}{2}(\log \sigma_c^2 - \log \sigma_T^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2} - 1)
+\]</div>
+<p>因此，我们可以对后验分布<span class="math notranslate nohighlight">\(q_\phi(c|T)\)</span>计算KL散度的期望，如下所示：</p>
+<div class="math notranslate nohighlight" id="equation-mean-post-1">
+<span class="eqno">(11)<a class="headerlink" href="#equation-mean-post-1" title="Link to this equation">#</a></span>\[\begin{split}
+\mathbb{E}_{q_\phi(c|T)}\left[D_{KL}(q_\phi(\mathbf{r}|T) \Vert p_\gamma(\mathbf{r}|c))\right] &amp; = \mathbb{E}_{q_\phi(c|T)} \left[\frac{1}{2}(\log \sigma_c^2 - \log \sigma_T^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2} - 1) \right] \\ &amp; = \frac{1}{2} \sum_{c=1}^{C} q_\phi (c|T)\left[\log \sigma_c^2 - \log \sigma_T^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2} - 1)\right]
+\end{split}\]</div>
+<p>我们将<span class="math notranslate nohighlight">\(q_\phi (c|T)\)</span>定义为<span class="math notranslate nohighlight">\(\mathbf{p}_{post}\)</span>，计算方式如下：</p>
+<div class="math notranslate nohighlight" id="equation-mean-post-2">
+<span class="eqno">(12)<a class="headerlink" href="#equation-mean-post-2" title="Link to this equation">#</a></span>\[\begin{split}
+\mathbb{E}_{q_\phi(c|T)}\left[D_{KL}(q_\phi(\mathbf{r}|T) \Vert p_\gamma(\mathbf{r}|c))\right] &amp; = \frac{1}{2} \sum_{c=1}^{C} q_\phi (c|T)\left[\log \sigma_c^2 - \log \sigma_T^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2} - 1)\right] \\ &amp; = \frac{1}{2} \sum_{c=1}^{C} p_{c,post}\left[\log \sigma_c^2 - \log \sigma_T^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2} - 1)\right] \\ &amp; = \frac{1}{2} \sum_{c=1}^{C} p_{c,post}\left[\log \sigma_c^2 + \frac{\sigma_T^2}{\sigma_c^2} + \frac{(\mu_T - \mu_c)^2}{\sigma_c^2})\right] - \frac{1}{2}(1 + \log \sigma_T^2)
+\end{split}\]</div>
+<p>接下来，我们计算第二项，称为均匀损失，它可以重写如下：</p>
+<div class="math notranslate nohighlight" id="equation-uniform-loss">
+<span class="eqno">(13)<a class="headerlink" href="#equation-uniform-loss" title="Link to this equation">#</a></span>\[\begin{split}
+\mathbb{E}_{{q_\phi}(\mathbf{r}|T)}\left[D_{KL}(q_\phi(c|T) \Vert p_\gamma(c)\right] &amp; =\int q_\phi(\mathbf{r}|T)\left[D_{KL}(q_\phi(c|T) \Vert p_\gamma(c)\right]d\mathbf{r} \\ &amp; = D_{KL}(q_\phi(c|T) \Vert p_\gamma(c) \\ &amp; = \sum_{c=1}^{C} {p_{c,post}} \log {p_{c,post}} - \log \frac{1}{C} \sum_{c=1}^{C} {p_{c,post}} \\ &amp; = \sum_{c=1}^{C} {p_{c,post}} \log {p_{c,post}} + \log C
+\end{split}\]</div>
+<section id="id11">
+<h4>在线轨迹序列异常检测<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>基于上述的编码器-隐藏路径空间-解码器的GM-VSAE模型，训练完成之后，如何进行轨迹序列的异常检测呢？</p>
+<p>我们知道，<a class="reference external" href="https://arxiv.org/pdf/1312.6114">VAE</a>对隐藏状态空间建模，给定输入<span class="math notranslate nohighlight">\(x\)</span>可以由编码器生成隐藏状态向量<span class="math notranslate nohighlight">\(z\)</span>，然后<span class="math notranslate nohighlight">\(z\)</span>经过解码器又可以重构出一个和输入<span class="math notranslate nohighlight">\(x\)</span>相似的<span class="math notranslate nohighlight">\(x'\)</span>，我们说这是因为<span class="math notranslate nohighlight">\(x\)</span>对应的隐藏状态向量<span class="math notranslate nohighlight">\(z\)</span>服从隐藏状态空间<span class="math notranslate nohighlight">\(p(z)\)</span>分布，所以从<span class="math notranslate nohighlight">\(p(z)\)</span>中采样又能恢复出<span class="math notranslate nohighlight">\(x'\)</span>来。</p>
+<p>同理，如果一个轨迹序列<span class="math notranslate nohighlight">\(T\)</span>是正常的，那么其经过编码器编码而成的隐藏路径<span class="math notranslate nohighlight">\(r\)</span>必定服从隐藏状态空间分布<span class="math notranslate nohighlight">\(p_\gamma(\mathbf{r},c)\)</span>，因此当解码器解码<span class="math notranslate nohighlight">\(r\)</span>时也能够恢复出一条与<span class="math notranslate nohighlight">\(T\)</span>相似的序列<span class="math notranslate nohighlight">\(T'\)</span>。如此，计算<span class="math notranslate nohighlight">\(T\)</span>和<span class="math notranslate nohighlight">\(T'\)</span>的相似度即可判定该序列是否异常。</p>
+<p>但是，上述判定方式仅适合用于离线轨迹序列异常检测，在离线的情况下，轨迹序列<span class="math notranslate nohighlight">\(T\)</span>已经采集完毕。但是在在线的情况下，轨迹序列是实时生成的，比如在出租车行驶的过程中采集实时的轨迹序列数据，此时如何进行异常检测呢？</p>
+<p>在GM-VSAE中，对隐藏状态空间建模为<span class="math notranslate nohighlight">\(p(\mathbf{r},c)\)</span>，其含义即为：一共有<span class="math notranslate nohighlight">\(C\)</span>个类型的隐藏路径，每类隐藏路径<span class="math notranslate nohighlight">\(r\)</span>都服从高斯分布<span class="math notranslate nohighlight">\(p_\gamma(r|c)\)</span>，均值为<span class="math notranslate nohighlight">\(\mu_c\)</span>，标准差为<span class="math notranslate nohighlight">\(\sigma_c\)</span>。所以我们可以使用其均值<span class="math notranslate nohighlight">\(\mu_c\)</span>来作为<span class="math notranslate nohighlight">\(\mathbf{r}\)</span>的近似替代。在线异常检测时，无需使用编码器来获得<span class="math notranslate nohighlight">\(r\)</span>，而是使用<span class="math notranslate nohighlight">\(\mu_c\)</span>来作为<span class="math notranslate nohighlight">\(r\)</span>，那么我们只需要用<span class="math notranslate nohighlight">\(C\)</span>个<span class="math notranslate nohighlight">\(\mu_c\)</span>，通过解码器计算当前的序列的概率即可实时判定该序列是否为异常：</p>
+<div class="math notranslate nohighlight" id="equation-online-detection-1">
+<span class="eqno">(14)<a class="headerlink" href="#equation-online-detection-1" title="Link to this equation">#</a></span>\[
+s(T)=1 -  \underset{c}{\operatorname{argmax}} \exp[\frac{\log p_\theta(T|\mu_c)}{n}]
+\]</div>
+<p>进一步的，可写出如下更为详细的计算公式：</p>
+<div class="math notranslate nohighlight" id="equation-online-detection-1">
+<span class="eqno">(15)<a class="headerlink" href="#equation-online-detection-1" title="Link to this equation">#</a></span>\[
+s(t_{\leq i+1})=1 -  \underset{c}{\operatorname{argmax}} \exp[\frac{\log p_\theta(t_{\leq i}|\mu_c)p_\theta(t_{i+1}|t_{\leq i},\mu_c)}{i+1}]
+\]</div>
+</section>
+</section>
+</section>
+<section id="id12">
+<h2>4.&nbsp;&nbsp;代码示例<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>我们以<code class="docutils literal notranslate"><span class="pre">Notebook</span></code>的形式，使用<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>实现了GM-VSAE算法的训练和推理，参见<a class="reference internal" href="../examples/gmvsae_example.html"><span class="std std-doc">GM-VSAE代码实践</span></a>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol class="arabic simple">
+<li><p>本文介绍了轨迹序列异常检测任务。</p></li>
+<li><p>本文介绍了GM-VSAE的原理部分，针对论文中的公式作近一步更为详细的推导。</p></li>
+</ol>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="t2vec.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">T2VEC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="stlstm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">HST-LSTM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">摘要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">预备知识</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">GM-VSAE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">方法建模</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">嵌入表征层</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">编码器</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">隐藏状态空间</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">解码器</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">目标函数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">在线轨迹序列异常检测</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">代码示例</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chao Song, Chaoqun Feng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, All authors of TrajDL.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
