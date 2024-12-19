@@ -50,6 +50,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data/open_source_dataset';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tools" href="../tools/index.html" />
@@ -130,10 +131,31 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/wide-logo.svg" class="logo__image only-light" alt="TrajDL documentation - Home"/>
+    <img src="../_static/wide-logo.svg" class="logo__image only-dark pst-js-only" alt="TrajDL documentation - Home"/>
   
-    <p class="title logo__title">TrajDL 0.1.0.dev1 documentation</p>
   
 </a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
         <div class="sidebar-primary-item">
 
 <button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -334,6 +356,53 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL/edit/main/docs/data/open_source_dataset.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -700,7 +769,7 @@ load dataset: porto
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;19907&quot;</td><td>&quot;20100409&quot;</td><td>[&quot;904387&quot;, &quot;280948&quot;]</td></tr><tr><td>&quot;14776&quot;</td><td>&quot;20100603&quot;</td><td>[&quot;954485&quot;, &quot;112261&quot;, … &quot;954485&quot;]</td></tr><tr><td>&quot;12130&quot;</td><td>&quot;20100526&quot;</td><td>[&quot;599762&quot;]</td></tr><tr><td>&quot;104426&quot;</td><td>&quot;20100320&quot;</td><td>[&quot;191559&quot;, &quot;752146&quot;, … &quot;191559&quot;]</td></tr><tr><td>&quot;133446&quot;</td><td>&quot;20101002&quot;</td><td>[&quot;2868829&quot;]</td></tr></tbody></table></div></div></div>
+<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;138442&quot;</td><td>&quot;20100930&quot;</td><td>[&quot;3566662&quot;, &quot;488919&quot;, … &quot;4024674&quot;]</td></tr><tr><td>&quot;31839&quot;</td><td>&quot;20100213&quot;</td><td>[&quot;434703&quot;]</td></tr><tr><td>&quot;56697&quot;</td><td>&quot;20100211&quot;</td><td>[&quot;527189&quot;]</td></tr><tr><td>&quot;14412&quot;</td><td>&quot;20100514&quot;</td><td>[&quot;617622&quot;, &quot;927879&quot;]</td></tr><tr><td>&quot;172235&quot;</td><td>&quot;20100527&quot;</td><td>[&quot;1161790&quot;, &quot;84824&quot;, &quot;1161790&quot;]</td></tr></tbody></table></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -717,16 +786,16 @@ load dataset: porto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=2, entity_id=&#39;19907&#39;, loc_seq=&#39;904387&#39;, &#39;280948&#39;),
- LocSeq(size=4, entity_id=&#39;14776&#39;, loc_seq=&#39;954485&#39;, &#39;112261&#39;, &#39;840183&#39;, ...),
- LocSeq(size=1, entity_id=&#39;12130&#39;, loc_seq=&#39;599762&#39;),
- LocSeq(size=6, entity_id=&#39;104426&#39;, loc_seq=&#39;191559&#39;, &#39;752146&#39;, &#39;746778&#39;, ...),
- LocSeq(size=1, entity_id=&#39;133446&#39;, loc_seq=&#39;2868829&#39;),
- LocSeq(size=19, entity_id=&#39;159942&#39;, loc_seq=&#39;24492&#39;, &#39;1299750&#39;, &#39;1363268&#39;, ...),
- LocSeq(size=1, entity_id=&#39;91873&#39;, loc_seq=&#39;109371&#39;),
- LocSeq(size=5, entity_id=&#39;108132&#39;, loc_seq=&#39;89441&#39;, &#39;151769&#39;, &#39;15826&#39;, ...),
- LocSeq(size=3, entity_id=&#39;531&#39;, loc_seq=&#39;729083&#39;, &#39;145009&#39;, &#39;521645&#39;),
- LocSeq(size=1, entity_id=&#39;20204&#39;, loc_seq=&#39;1324471&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=4, entity_id=&#39;138442&#39;, loc_seq=&#39;3566662&#39;, &#39;488919&#39;, &#39;68961&#39;, ...),
+ LocSeq(size=1, entity_id=&#39;31839&#39;, loc_seq=&#39;434703&#39;),
+ LocSeq(size=1, entity_id=&#39;56697&#39;, loc_seq=&#39;527189&#39;),
+ LocSeq(size=2, entity_id=&#39;14412&#39;, loc_seq=&#39;617622&#39;, &#39;927879&#39;),
+ LocSeq(size=3, entity_id=&#39;172235&#39;, loc_seq=&#39;1161790&#39;, &#39;84824&#39;, &#39;1161790&#39;),
+ LocSeq(size=1, entity_id=&#39;165856&#39;, loc_seq=&#39;1160097&#39;),
+ LocSeq(size=4, entity_id=&#39;41194&#39;, loc_seq=&#39;1086862&#39;, &#39;1467150&#39;, &#39;82515&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;26690&#39;, loc_seq=&#39;14470&#39;, &#39;27859&#39;),
+ LocSeq(size=1, entity_id=&#39;19885&#39;, loc_seq=&#39;1201999&#39;),
+ LocSeq(size=1, entity_id=&#39;100275&#39;, loc_seq=&#39;5726211&#39;)]
 </pre></div>
 </div>
 </div>
@@ -773,27 +842,24 @@ start_ts: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7f846ff5fac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7fe702b6ba60&gt;
 [
   [
     [
-      &quot;904387&quot;,
-      &quot;280948&quot;
+      &quot;3566662&quot;,
+      &quot;488919&quot;,
+      &quot;68961&quot;,
+      &quot;4024674&quot;
     ],
     [
-      &quot;954485&quot;,
-      &quot;112261&quot;,
-      &quot;840183&quot;,
-      &quot;954485&quot;
+      &quot;434703&quot;
     ],
     ...
     [
-      &quot;729083&quot;,
-      &quot;145009&quot;,
-      &quot;521645&quot;
+      &quot;1201999&quot;
     ],
     [
-      &quot;1324471&quot;
+      &quot;5726211&quot;
     ]
   ]
 ]

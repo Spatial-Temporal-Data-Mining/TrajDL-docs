@@ -52,6 +52,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installation" href="getting_started/installation.html" />
@@ -133,10 +134,31 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/wide-logo.svg" class="logo__image only-light" alt="TrajDL documentation - Home"/>
+    <img src="_static/wide-logo.svg" class="logo__image only-dark pst-js-only" alt="TrajDL documentation - Home"/>
   
-    <p class="title logo__title">TrajDL 0.1.0.dev1 documentation</p>
   
 </a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
         <div class="sidebar-primary-item">
 
 <button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -342,6 +364,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Spatial-Temporal-Data-Mining/TrajDL/edit/main/docs/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -450,11 +519,11 @@
 <dl class="simple myst">
 <dt>基于Arrow，Pytorch和Lightning</dt><dd><p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>的数据部分构建在<code class="docutils literal notranslate"><span class="pre">Arrow</span></code>之上，模型部分构建在<code class="docutils literal notranslate"><span class="pre">Pytorch</span></code>之上，训练与验证流程构建在<code class="docutils literal notranslate"><span class="pre">Lightning</span></code>之上，充分结合各个框架工具的优势。</p>
 </dd>
-<dt>包含SOTA模型的复现脚本</dt><dd><p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了SOTA模型的复现脚本，用户可以通过脚本重现论文内的实验结果，部分场景下<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>具备比论文场景更优的效果。</p>
-</dd>
 <dt>高效的工具</dt><dd><p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了高效的工具，比如高效的<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>，<code class="docutils literal notranslate"><span class="pre">Tokenizer</span></code>，<code class="docutils literal notranslate"><span class="pre">GridSystem</span></code>。出色的零拷贝特性可以显著降低数据的处理时间，节省内存使用。高效的<code class="docutils literal notranslate"><span class="pre">Tokenizer</span></code>和<code class="docutils literal notranslate"><span class="pre">GridSystem</span></code>可以随时转换数据，无需预先处理数据。</p>
 </dd>
 <dt>可扩展性</dt><dd><p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>高度模块化，不会约束用户的代码，用户可以随时从<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>里面取出自己需要使用的工具。<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>还打通了与<code class="docutils literal notranslate"><span class="pre">Polars</span></code>，<code class="docutils literal notranslate"><span class="pre">Pandas</span></code>，<code class="docutils literal notranslate"><span class="pre">PyArrow</span></code>等工具的接口，用户使用常用的科学计算工具处理后的数据可以轻松导入到<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>的数据体系。另外<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>同时支持API与配置文件两种方式开展实验与开发，尽可能提升用户体验。</p>
+</dd>
+<dt>SOTA模型的实验复现脚本</dt><dd><p><code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>提供了SOTA模型的复现脚本，用户可以通过脚本重现论文内的实验结果，部分场景下<code class="docutils literal notranslate"><span class="pre">TrajDL</span></code>具备比论文场景更优的效果。</p>
 </dd>
 </dl>
 <hr class="docutils" />
