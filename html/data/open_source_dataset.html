@@ -769,7 +769,7 @@ load dataset: porto
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;167102&quot;</td><td>&quot;20100916&quot;</td><td>[&quot;298677&quot;, &quot;298677&quot;]</td></tr><tr><td>&quot;95959&quot;</td><td>&quot;20101007&quot;</td><td>[&quot;3372517&quot;, &quot;1486787&quot;, &quot;1678515&quot;]</td></tr><tr><td>&quot;5993&quot;</td><td>&quot;20100409&quot;</td><td>[&quot;228046&quot;, &quot;38927&quot;]</td></tr><tr><td>&quot;15072&quot;</td><td>&quot;20100612&quot;</td><td>[&quot;11613&quot;]</td></tr><tr><td>&quot;15825&quot;</td><td>&quot;20100915&quot;</td><td>[&quot;888888&quot;, &quot;642319&quot;, &quot;901674&quot;]</td></tr></tbody></table></div></div></div>
+<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;46474&quot;</td><td>&quot;20100822&quot;</td><td>[&quot;1232772&quot;, &quot;27346&quot;, &quot;13456&quot;]</td></tr><tr><td>&quot;67373&quot;</td><td>&quot;20100326&quot;</td><td>[&quot;794521&quot;, &quot;735959&quot;]</td></tr><tr><td>&quot;102539&quot;</td><td>&quot;20100504&quot;</td><td>[&quot;1016992&quot;, &quot;251834&quot;, &quot;753713&quot;]</td></tr><tr><td>&quot;12676&quot;</td><td>&quot;20100717&quot;</td><td>[&quot;1409037&quot;, &quot;1423062&quot;, … &quot;1405233&quot;]</td></tr><tr><td>&quot;39307&quot;</td><td>&quot;20100822&quot;</td><td>[&quot;708483&quot;, &quot;282732&quot;]</td></tr></tbody></table></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,16 +786,16 @@ load dataset: porto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=2, entity_id=&#39;167102&#39;, loc_seq=&#39;298677&#39;, &#39;298677&#39;),
- LocSeq(size=3, entity_id=&#39;95959&#39;, loc_seq=&#39;3372517&#39;, &#39;1486787&#39;, &#39;1678515&#39;),
- LocSeq(size=2, entity_id=&#39;5993&#39;, loc_seq=&#39;228046&#39;, &#39;38927&#39;),
- LocSeq(size=1, entity_id=&#39;15072&#39;, loc_seq=&#39;11613&#39;),
- LocSeq(size=3, entity_id=&#39;15825&#39;, loc_seq=&#39;888888&#39;, &#39;642319&#39;, &#39;901674&#39;),
- LocSeq(size=1, entity_id=&#39;25716&#39;, loc_seq=&#39;237345&#39;),
- LocSeq(size=1, entity_id=&#39;112108&#39;, loc_seq=&#39;904455&#39;),
- LocSeq(size=8, entity_id=&#39;4923&#39;, loc_seq=&#39;395034&#39;, &#39;315542&#39;, &#39;300758&#39;, ...),
- LocSeq(size=2, entity_id=&#39;130107&#39;, loc_seq=&#39;1524865&#39;, &#39;297817&#39;),
- LocSeq(size=3, entity_id=&#39;71977&#39;, loc_seq=&#39;35256&#39;, &#39;16202&#39;, &#39;56612&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=3, entity_id=&#39;46474&#39;, loc_seq=&#39;1232772&#39;, &#39;27346&#39;, &#39;13456&#39;),
+ LocSeq(size=2, entity_id=&#39;67373&#39;, loc_seq=&#39;794521&#39;, &#39;735959&#39;),
+ LocSeq(size=3, entity_id=&#39;102539&#39;, loc_seq=&#39;1016992&#39;, &#39;251834&#39;, &#39;753713&#39;),
+ LocSeq(size=4, entity_id=&#39;12676&#39;, loc_seq=&#39;1409037&#39;, &#39;1423062&#39;, &#39;1453663&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;39307&#39;, loc_seq=&#39;708483&#39;, &#39;282732&#39;),
+ LocSeq(size=2, entity_id=&#39;32139&#39;, loc_seq=&#39;61326&#39;, &#39;1349376&#39;),
+ LocSeq(size=1, entity_id=&#39;108977&#39;, loc_seq=&#39;697199&#39;),
+ LocSeq(size=2, entity_id=&#39;159959&#39;, loc_seq=&#39;839564&#39;, &#39;1217952&#39;),
+ LocSeq(size=2, entity_id=&#39;89023&#39;, loc_seq=&#39;1555060&#39;, &#39;1153898&#39;),
+ LocSeq(size=3, entity_id=&#39;7468&#39;, loc_seq=&#39;86117&#39;, &#39;235840&#39;, &#39;109730&#39;)]
 </pre></div>
 </div>
 </div>
@@ -842,27 +842,27 @@ start_ts: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7f506795ffa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7f964155bc40&gt;
 [
   [
     [
-      &quot;298677&quot;,
-      &quot;298677&quot;
+      &quot;1232772&quot;,
+      &quot;27346&quot;,
+      &quot;13456&quot;
     ],
     [
-      &quot;3372517&quot;,
-      &quot;1486787&quot;,
-      &quot;1678515&quot;
+      &quot;794521&quot;,
+      &quot;735959&quot;
     ],
     ...
     [
-      &quot;1524865&quot;,
-      &quot;297817&quot;
+      &quot;1555060&quot;,
+      &quot;1153898&quot;
     ],
     [
-      &quot;35256&quot;,
-      &quot;16202&quot;,
-      &quot;56612&quot;
+      &quot;86117&quot;,
+      &quot;235840&quot;,
+      &quot;109730&quot;
     ]
   ]
 ]
