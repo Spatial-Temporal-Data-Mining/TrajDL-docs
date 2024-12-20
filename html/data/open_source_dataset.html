@@ -769,7 +769,7 @@ load dataset: porto
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;55585&quot;</td><td>&quot;20100906&quot;</td><td>[&quot;1273697&quot;]</td></tr><tr><td>&quot;5882&quot;</td><td>&quot;20101005&quot;</td><td>[&quot;10598&quot;, &quot;232554&quot;]</td></tr><tr><td>&quot;6771&quot;</td><td>&quot;20100811&quot;</td><td>[&quot;167823&quot;, &quot;653957&quot;, &quot;576151&quot;]</td></tr><tr><td>&quot;54814&quot;</td><td>&quot;20100409&quot;</td><td>[&quot;171033&quot;]</td></tr><tr><td>&quot;32534&quot;</td><td>&quot;20101018&quot;</td><td>[&quot;5752291&quot;, &quot;654988&quot;, … &quot;1548828&quot;]</td></tr></tbody></table></div></div></div>
+<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;2494&quot;</td><td>&quot;20100728&quot;</td><td>[&quot;432285&quot;, &quot;87439&quot;, … &quot;1289497&quot;]</td></tr><tr><td>&quot;22363&quot;</td><td>&quot;20100516&quot;</td><td>[&quot;600538&quot;, &quot;91989&quot;]</td></tr><tr><td>&quot;146819&quot;</td><td>&quot;20100731&quot;</td><td>[&quot;1531454&quot;, &quot;199272&quot;, … &quot;1535191&quot;]</td></tr><tr><td>&quot;157169&quot;</td><td>&quot;20100312&quot;</td><td>[&quot;523333&quot;, &quot;694238&quot;]</td></tr><tr><td>&quot;633&quot;</td><td>&quot;20091030&quot;</td><td>[&quot;68712&quot;, &quot;49672&quot;, … &quot;69649&quot;]</td></tr></tbody></table></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,16 +786,16 @@ load dataset: porto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=1, entity_id=&#39;55585&#39;, loc_seq=&#39;1273697&#39;),
- LocSeq(size=2, entity_id=&#39;5882&#39;, loc_seq=&#39;10598&#39;, &#39;232554&#39;),
- LocSeq(size=3, entity_id=&#39;6771&#39;, loc_seq=&#39;167823&#39;, &#39;653957&#39;, &#39;576151&#39;),
- LocSeq(size=1, entity_id=&#39;54814&#39;, loc_seq=&#39;171033&#39;),
- LocSeq(size=9, entity_id=&#39;32534&#39;, loc_seq=&#39;5752291&#39;, &#39;654988&#39;, &#39;118341&#39;, ...),
- LocSeq(size=4, entity_id=&#39;83894&#39;, loc_seq=&#39;76698&#39;, &#39;430911&#39;, &#39;88958&#39;, ...),
- LocSeq(size=1, entity_id=&#39;89692&#39;, loc_seq=&#39;460096&#39;),
- LocSeq(size=1, entity_id=&#39;96381&#39;, loc_seq=&#39;438590&#39;),
- LocSeq(size=1, entity_id=&#39;2266&#39;, loc_seq=&#39;1477996&#39;),
- LocSeq(size=2, entity_id=&#39;57120&#39;, loc_seq=&#39;532237&#39;, &#39;406942&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=9, entity_id=&#39;2494&#39;, loc_seq=&#39;432285&#39;, &#39;87439&#39;, &#39;795047&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;22363&#39;, loc_seq=&#39;600538&#39;, &#39;91989&#39;),
+ LocSeq(size=5, entity_id=&#39;146819&#39;, loc_seq=&#39;1531454&#39;, &#39;199272&#39;, &#39;1415915&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;157169&#39;, loc_seq=&#39;523333&#39;, &#39;694238&#39;),
+ LocSeq(size=4, entity_id=&#39;633&#39;, loc_seq=&#39;68712&#39;, &#39;49672&#39;, &#39;69622&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;64177&#39;, loc_seq=&#39;240829&#39;, &#39;95284&#39;),
+ LocSeq(size=1, entity_id=&#39;60891&#39;, loc_seq=&#39;66842&#39;),
+ LocSeq(size=1, entity_id=&#39;100740&#39;, loc_seq=&#39;606224&#39;),
+ LocSeq(size=1, entity_id=&#39;2286&#39;, loc_seq=&#39;188247&#39;),
+ LocSeq(size=1, entity_id=&#39;60302&#39;, loc_seq=&#39;131619&#39;)]
 </pre></div>
 </div>
 </div>
@@ -842,23 +842,30 @@ start_ts: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7faf71b5fe80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7ff5cdb5fa00&gt;
 [
   [
     [
-      &quot;1273697&quot;
+      &quot;432285&quot;,
+      &quot;87439&quot;,
+      &quot;795047&quot;,
+      &quot;18017&quot;,
+      &quot;924742&quot;,
+      &quot;703298&quot;,
+      &quot;286095&quot;,
+      &quot;320855&quot;,
+      &quot;1289497&quot;
     ],
     [
-      &quot;10598&quot;,
-      &quot;232554&quot;
+      &quot;600538&quot;,
+      &quot;91989&quot;
     ],
     ...
     [
-      &quot;1477996&quot;
+      &quot;188247&quot;
     ],
     [
-      &quot;532237&quot;,
-      &quot;406942&quot;
+      &quot;131619&quot;
     ]
   ]
 ]
