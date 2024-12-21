@@ -769,7 +769,7 @@ load dataset: porto
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;60996&quot;</td><td>&quot;20100511&quot;</td><td>[&quot;1097028&quot;]</td></tr><tr><td>&quot;156789&quot;</td><td>&quot;20100109&quot;</td><td>[&quot;14582&quot;]</td></tr><tr><td>&quot;86691&quot;</td><td>&quot;20100716&quot;</td><td>[&quot;1407981&quot;]</td></tr><tr><td>&quot;89817&quot;</td><td>&quot;20100821&quot;</td><td>[&quot;69244&quot;]</td></tr><tr><td>&quot;140332&quot;</td><td>&quot;20100830&quot;</td><td>[&quot;1600838&quot;]</td></tr></tbody></table></div></div></div>
+<small>shape: (5, 3)</small><table border="1" class="dataframe"><thead><tr><th>user_id</th><th>ds</th><th>loc_seq</th></tr><tr><td>str</td><td>str</td><td>list[str]</td></tr></thead><tbody><tr><td>&quot;138637&quot;</td><td>&quot;20100606&quot;</td><td>[&quot;534543&quot;, &quot;538722&quot;, … &quot;657850&quot;]</td></tr><tr><td>&quot;11500&quot;</td><td>&quot;20100607&quot;</td><td>[&quot;511962&quot;, &quot;1239114&quot;]</td></tr><tr><td>&quot;17666&quot;</td><td>&quot;20100928&quot;</td><td>[&quot;3859530&quot;, &quot;1390713&quot;, &quot;4565320&quot;]</td></tr><tr><td>&quot;100174&quot;</td><td>&quot;20100829&quot;</td><td>[&quot;487812&quot;, &quot;316924&quot;, &quot;525402&quot;]</td></tr><tr><td>&quot;3010&quot;</td><td>&quot;20100418&quot;</td><td>[&quot;300350&quot;, &quot;134019&quot;, &quot;100629&quot;]</td></tr></tbody></table></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,16 +786,16 @@ load dataset: porto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=1, entity_id=&#39;60996&#39;, loc_seq=&#39;1097028&#39;),
- LocSeq(size=1, entity_id=&#39;156789&#39;, loc_seq=&#39;14582&#39;),
- LocSeq(size=1, entity_id=&#39;86691&#39;, loc_seq=&#39;1407981&#39;),
- LocSeq(size=1, entity_id=&#39;89817&#39;, loc_seq=&#39;69244&#39;),
- LocSeq(size=1, entity_id=&#39;140332&#39;, loc_seq=&#39;1600838&#39;),
- LocSeq(size=2, entity_id=&#39;37811&#39;, loc_seq=&#39;97249&#39;, &#39;121154&#39;),
- LocSeq(size=1, entity_id=&#39;23017&#39;, loc_seq=&#39;316668&#39;),
- LocSeq(size=1, entity_id=&#39;104255&#39;, loc_seq=&#39;774978&#39;),
- LocSeq(size=1, entity_id=&#39;4653&#39;, loc_seq=&#39;594995&#39;),
- LocSeq(size=1, entity_id=&#39;103966&#39;, loc_seq=&#39;1507493&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LocSeq(size=4, entity_id=&#39;138637&#39;, loc_seq=&#39;534543&#39;, &#39;538722&#39;, &#39;1042018&#39;, ...),
+ LocSeq(size=2, entity_id=&#39;11500&#39;, loc_seq=&#39;511962&#39;, &#39;1239114&#39;),
+ LocSeq(size=3, entity_id=&#39;17666&#39;, loc_seq=&#39;3859530&#39;, &#39;1390713&#39;, &#39;4565320&#39;),
+ LocSeq(size=3, entity_id=&#39;100174&#39;, loc_seq=&#39;487812&#39;, &#39;316924&#39;, &#39;525402&#39;),
+ LocSeq(size=3, entity_id=&#39;3010&#39;, loc_seq=&#39;300350&#39;, &#39;134019&#39;, &#39;100629&#39;),
+ LocSeq(size=1, entity_id=&#39;5230&#39;, loc_seq=&#39;364476&#39;),
+ LocSeq(size=1, entity_id=&#39;72819&#39;, loc_seq=&#39;347817&#39;),
+ LocSeq(size=1, entity_id=&#39;109215&#39;, loc_seq=&#39;62599&#39;),
+ LocSeq(size=1, entity_id=&#39;3652&#39;, loc_seq=&#39;736154&#39;),
+ LocSeq(size=1, entity_id=&#39;50857&#39;, loc_seq=&#39;4973108&#39;)]
 </pre></div>
 </div>
 </div>
@@ -842,21 +842,25 @@ start_ts: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7fdb0435fc40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyarrow.lib.ChunkedArray object at 0x7fac9815be20&gt;
 [
   [
     [
-      &quot;1097028&quot;
+      &quot;534543&quot;,
+      &quot;538722&quot;,
+      &quot;1042018&quot;,
+      &quot;657850&quot;
     ],
     [
-      &quot;14582&quot;
+      &quot;511962&quot;,
+      &quot;1239114&quot;
     ],
     ...
     [
-      &quot;594995&quot;
+      &quot;736154&quot;
     ],
     [
-      &quot;1507493&quot;
+      &quot;4973108&quot;
     ]
   ]
 ]
